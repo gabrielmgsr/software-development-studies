@@ -1,0 +1,100 @@
+body {
+    /* display: flex;  */
+    align-items: center; 
+    flex-direction: column;
+    margin: 0;
+}
+/* div {
+    display: flex; align-items: center; gap: 12px;
+} */
+ .menu {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+ }
+.menu a {
+    /* text-decoration: none;
+    color: #000;
+    margin: 0 8px;
+    display: flex;
+    justify-content: center; */
+    display: inline-block;
+}
+
+.page {
+    text-align: center;
+}
+
+.menu a::after {
+    content: "/";
+    margin-left: 10px;
+    color: 555;
+}
+
+.menu a:last-child::after {
+    content: "";
+}
+.center{
+    text-align: center;
+}
+/* Link dos Projetos */
+.h3_center{
+    text-align: center;
+}
+
+.projetos {
+    display: flex;
+    /* Alinha um debaixo do outro */
+    flex-direction: column;
+    /* Centraliza texto */
+    align-items: center;
+    /* espaçamento */
+    gap: 10px;
+}
+
+/* Work Experience */
+.work_experience {
+    text-align: left;
+    margin-left: 25px;
+    padding: 1px;
+}
+.work_experience span {
+    color: blue;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+/* Education */
+.education p {
+    text-align: left;
+    margin-left: 25px;
+    padding: 1px;
+}
+/* Reviews From my Teachers */
+.reviews {
+
+}
+.reviews_p1{
+    text-align: left;
+    margin-left: 25px;
+    padding: 1px;
+}
+.reviews_p2 {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-left: 25px;
+    padding: 1px;
+    color: gray;
+    margin-bottom: 10px;
+}
+
+/* Media Queries */
+@media (min-width: 1200px) {
+    .menu{
+        justify-content: center;
+        display: flex;
+        gap: 150px;
+    }
+}
