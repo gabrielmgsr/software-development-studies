@@ -1,0 +1,36 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1C1C1C;
+    text-align: center;
+
+}
+
+img{
+    border-radius: 50%;
+    width: 125px;
+}
+.caixa {
+    width: 300px;
+    border: 10px solid transparent;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: 	#363636;
+    margin: 0 auto;
+}
+p{
+    color: white;
+}
+.links{
+    border: 1px solid transparent;
+    padding: 10px;
+    background-color: #4F4F4F;
+    border-radius: 10px;
+}
+a{
+   color: white; 
+   text-decoration: none;
+}
