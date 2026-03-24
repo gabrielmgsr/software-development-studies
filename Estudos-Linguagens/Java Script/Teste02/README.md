@@ -1,24 +1,28 @@
-📘 Tipos de Saída em JavaScript
+📘 Declaração de Variáveis no JavaScript
 
-Em JavaScript, existem diferentes formas de exibir informações para o usuário. Aqui estão algumas das principais:
+Em JavaScript, você pode declarar variáveis de formas diferentes, inclusive na mesma linha.
 
-🔹 1. alert()
-alert("Hello World");
-📌 Descrição:
-Exibe uma mensagem em uma janela pop-up.
-Interrompe o código até o usuário clicar em "OK".
+🔹 Exemplo em várias linhas
+// let a,b,c;
+// a = 5;
+// b = 10;
+// c = 15;
+🔹 Exemplo na mesma linha
+// let a,b,c; a = 5; b = 10; c = 15;
 
-🔹 2. console.log()
-console.log("Hello World");
-📌 Descrição:
-Mostra a mensagem no console do navegador.
-Muito usado para testes e depuração.
+📌 Explicação:
 
-🔹 3. document.write()
-document.write("Hello World");
-📌 Descrição:
-Escreve diretamente no HTML da página.
-Pouco usado em projetos modernos.
+Em JavaScript, você pode escrever várias instruções na mesma linha.
+Basta separar cada instrução com ponto e vírgula (;).
+⚠️ Atenção com variáveis repetidas
+// let pessoa = "Marcos";
+// let pessoa = "Marcos";
 
-🔹 4. innerHTML
-document.getElementById("demo").innerHTML = "Hello World";
+📌 Explicação:
+
+Não é permitido declarar a mesma variável duas vezes com let.
+Isso gera erro no código.
+💡 Resumo
+✅ Pode colocar várias instruções na mesma linha usando ;
+❌ Não pode repetir declaração com let
+✔️ Prefira organizar em várias linhas para facilitar a leitura
