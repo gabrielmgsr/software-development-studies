@@ -1,28 +1,24 @@
-📘 Declaração de Variáveis no JavaScript
+📘 Sintaxe Básica em JavaScript
+🔹 Case Sensitive (sensível a maiúsculas e minúsculas)
 
-Em JavaScript, você pode declarar variáveis de formas diferentes, inclusive na mesma linha.
+Em JavaScript, nomes de variáveis diferenciam letras maiúsculas e minúsculas:
 
-🔹 Exemplo em várias linhas
-// let a,b,c;
-// a = 5;
-// b = 10;
-// c = 15;
-🔹 Exemplo na mesma linha
-// let a,b,c; a = 5; b = 10; c = 15;
+let pessoa = "Marcos";
+let Pessoa = "João";
+let PESSOA = "Maria";
 
 📌 Explicação:
 
-Em JavaScript, você pode escrever várias instruções na mesma linha.
-Basta separar cada instrução com ponto e vírgula (;).
-⚠️ Atenção com variáveis repetidas
-// let pessoa = "Marcos";
-// let pessoa = "Marcos";
+pessoa, Pessoa e PESSOA são variáveis diferentes
+Isso acontece porque o JavaScript é case sensitive
+🔹 Atribuição de valor (=)
+
+O sinal de igual (=) é usado para atribuir um valor a uma variável:
+
+var a = 1;
 
 📌 Explicação:
 
-Não é permitido declarar a mesma variável duas vezes com let.
-Isso gera erro no código.
-💡 Resumo
-✅ Pode colocar várias instruções na mesma linha usando ;
-❌ Não pode repetir declaração com let
-✔️ Prefira organizar em várias linhas para facilitar a leitura
+a é o nome da variável
+= significa atribuição
+1 é o valor armazenado na variável
