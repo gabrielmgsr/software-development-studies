@@ -1,0 +1,21 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgb(108, 233, 233);
+}
+
+div{
+    background-color: white;
+    padding: 100px;
+    border-radius: 50px;
+}
+
+div h1{
+    text-align: center;
+}
+
+div button{
+    padding: 10px;
+}

@@ -1,0 +1,24 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: aqua;
+    height: 100vh;
+}
+div{
+    background-color: white;
+    padding: 50px;
+    border-radius: 10px;
+}
+
+input{
+    width: 50px;
+    padding: 3px;
+}
+.min {
+    margin-left: 100px;
+}
+
+.max {
+    margin-left: 50px;
+}
