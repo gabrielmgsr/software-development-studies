@@ -1,0 +1,11 @@
+*{
+    margin: 0;
+}
+body{
+    overflow-y: hidden;
+}
+img{
+    object-fit: fill;
+    width: 75%;
+    height: 100%;
+}
