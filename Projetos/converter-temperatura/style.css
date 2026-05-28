@@ -4,6 +4,7 @@ body{
     justify-content: center;
     height: 100vh;
     background: #dbeafe;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .container{
@@ -17,7 +18,7 @@ body{
 .global{
     display: flex;
     align-items: center;
-    gap: 50px;
+    gap: 50px;  
     margin-bottom: 15px;
 }
 
@@ -28,4 +29,20 @@ label{
 input{
     width: 200px;
     padding: 5px;
+}
+
+.btn{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+button{
+    width: 150px;
+    height: 40px;
+    font-size: 20px;
+    border: none;
+    border-radius: 16px;
+    background-color: antiquewhite;
+    cursor: pointer;
 }
