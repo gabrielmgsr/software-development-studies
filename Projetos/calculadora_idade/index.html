@@ -9,17 +9,19 @@
 <body>
     <div class="container">
         <h1>Calculadora de Idade</h1>
-        <h3>Insira sua data de nascimneto</h3>
+        <h2>Insira sua data de nascimento</h2>
 
-        <div class="insirar-data">
-            <input type="date">
+        <div id="insirar-data">
+            <input type="date" id="dataNascimento">
         </div>
 
-        <div class="btn-calcular">
-            <button>
+        <div id="btn-calcular">
+            <button onclick="calcularIdade()">
                 Calcular Idade 
             </button>
         </div>
+
+        <h2 id="resultado">Você tem ** anos de idade</h2>
     </div>
     
     <script src="script.js"></script>
