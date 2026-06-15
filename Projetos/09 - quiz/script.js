@@ -12,3 +12,13 @@ const questionEl = document.getElementById('question')
 const answersEl = document.getElementById('answers')
 const btnNext = document.getElementById('btn')
 const scoreEl = document.getElementById('score')
+
+
+function mostrarPergunta() {
+    const currentQuestion = question[current]
+
+    questionEl.textContent = currentQuestion.question;
+    answersEl.textContent = currentQuestion.answers;
+}
+
+mostrarPergunta();
