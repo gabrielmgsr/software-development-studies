@@ -18,7 +18,16 @@ function mostrarPergunta() {
     const currentQuestion = question[current]
 
     questionEl.textContent = currentQuestion.question;
-    answersEl.textContent = currentQuestion.answers;
+    // answersEl.textContent = currentQuestion.answers;
+
+    question[current].answers.forEach(AnswersEll =>{
+        const botao = document.createElement('button');
+
+        botao.textContent = AnswersEll
+
+        document.getElementById('answers').appendChild(botao);
+    })
+    
 }
 
 mostrarPergunta();
