@@ -20,10 +20,11 @@ function mostrarPergunta() {
     questionEl.textContent = currentQuestion.question;
     // answersEl.textContent = currentQuestion.answers;
 
-    question[current].answers.forEach(AnswersEll =>{
+    question[current].answers.forEach((AnswersEll, index) =>{
         const botao = document.createElement('button');
+        botao.classList.add('botao');
 
-        botao.textContent = AnswersEll
+        botao.textContent = `${index + 1}) ${AnswersEll}`
 
         document.getElementById('answers').appendChild(botao);
     })
