@@ -23,10 +23,16 @@ function mostrarPergunta() {
     question[current].answers.forEach((AnswersEll, index) =>{
         const botao = document.createElement('button');
         botao.classList.add('botao');
-
         botao.textContent = `${index + 1}) ${AnswersEll}`
-
         document.getElementById('answers').appendChild(botao);
+
+        botao.addEventListener('click', () =>{
+            if (index === question[current].correct){
+                botao.classList.add("correto")
+            } else{
+                botao.classList.add("errou")
+            }
+        })
     })
     
 }
