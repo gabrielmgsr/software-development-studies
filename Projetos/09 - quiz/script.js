@@ -28,6 +28,7 @@ const question = [
 
 let current = 0;
 let score = 0;
+let respondeu = false;
 
 const questionEl = document.getElementById('question')
 const answersEl = document.getElementById('answers')
@@ -36,6 +37,7 @@ const scoreEl = document.getElementById('score')
 
 
 function mostrarPergunta() {
+    respondeu = false;
     const currentQuestion = question[current]
 
     questionEl.textContent = currentQuestion.question;
@@ -50,6 +52,9 @@ function mostrarPergunta() {
         document.getElementById('answers').appendChild(botao);
 
         botao.addEventListener('click', () =>{
+            if (respondeu) return;
+             respondeu = true;
+
             if (index === question[current].correct){
                 botao.classList.add("correto")
                 score++;
