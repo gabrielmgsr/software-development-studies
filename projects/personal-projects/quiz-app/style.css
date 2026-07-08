@@ -1,5 +1,5 @@
 body{
-    background-color: aquamarine;
+    background: radial-gradient(circle at 50% 50%, #5026EB 0%, #985BF5 100%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,10 +16,13 @@ body{
     min-height: 400px;
 
     padding: 20px;
-    
-    background-color: white;
-    border: 1px solid none;
-    border-radius: 5px;
+    margin-top: 100px;
+
+    /* background: radial-gradient(circle at 50% 50%, #5026EB 0%, #985BF5 100%); */
+    border: 1px solid;
+    border-radius: 8px;
+    box-shadow: 14px 12px 13px -6px rgba(17, 24, 39, 0.25);
+    color: white;
 }
 
 #answers{
