@@ -34,6 +34,7 @@ const questionEl = document.getElementById('question')
 const answersEl = document.getElementById('answers')
 const btnNext = document.getElementById('btn')
 const scoreEl = document.getElementById('score')
+const currentEl = document.getElementById('current')
 
 
 function mostrarPergunta() {
@@ -64,18 +65,16 @@ function mostrarPergunta() {
             }
         })
     })
-
-    btnNext.addEventListener('click', () =>{
+    currentEl.textContent = `${current + 1}/${question.length}` 
+}
+btnNext.addEventListener('click', () =>{
         current++;
-
         if(current < question.length){
             mostrarPergunta();
         } else{
             questionEl.textContent = 'Quiz finalizado!'
             answersEl.innerHTML = '';
         }
-
+        
     })
-}
-
 mostrarPergunta();
