@@ -80,7 +80,10 @@ btnNext.addEventListener('click', () =>{
 mostrarPergunta();
 
 /* 
-1 - Criar if/else para localizar a em qual pwergunta estou.
-2 - Colocar "a, b, c" ao inves de "1, 2, 3".
-3 - Cada pontuação muda o cabelo no container da pontuação
+                                    Próximas implementações
+
+1 - Criar uma estrutura `if/else` para identificar em qual pergunta o usuário está.
+2 - Exibir as alternativas como "A, B, C" em vez de "1, 2, 3".
+3 - Alterar a cor do cabelo do personagem no container de pontuação de acordo com a pontuação.
+4 - Adicionar efeitos visuais ao acertar e ao errar uma resposta.
 */
