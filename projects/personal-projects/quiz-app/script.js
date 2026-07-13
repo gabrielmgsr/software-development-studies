@@ -65,7 +65,7 @@ function mostrarPergunta() {
             }
         })
     })
-    currentEl.textContent = `${current + 1}/${question.length}` 
+    currentEl.textContent = `Pergunta ${current + 1} de ${question.length}` 
 }
 btnNext.addEventListener('click', () =>{
         current++;
@@ -78,3 +78,9 @@ btnNext.addEventListener('click', () =>{
         
     })
 mostrarPergunta();
+
+/* 
+1 - Criar if/else para localizar a em qual pwergunta estou.
+2 - Colocar "a, b, c" ao inves de "1, 2, 3".
+3 - Cada pontuação muda o cabelo no container da pontuação
+*/

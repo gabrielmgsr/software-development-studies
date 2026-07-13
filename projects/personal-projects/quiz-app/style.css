@@ -1,5 +1,6 @@
 body{
-    background: radial-gradient(circle at 50% 50%, #5026EB 0%, #985BF5 100%);
+    /* background: radial-gradient(circle at 50% 50%, #5026EB 0%, #985BF5 100%); */
+    background-image: url(/img/foto\ anime.jpg);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -19,10 +20,12 @@ body{
     margin-top: 100px;
 
     /* background: radial-gradient(circle at 50% 50%, #5026EB 0%, #985BF5 100%); */
-    border: 1px solid;
-    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
     box-shadow: 14px 12px 13px -6px rgba(17, 24, 39, 0.25);
     color: white;
+    backdrop-filter: blur(5px); /*efeito de desfoque*/
+    background: rgba(255, 255, 255, 0.08);
 }
 
 #answers{
@@ -49,4 +52,12 @@ body{
 
 .errou{
     background-color: red;
+}
+#current{
+    position: relative;
+    margin: 0;
+    left:40%;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 5px;
 }
