@@ -1,14 +1,19 @@
-body{
+body {
     /* background: radial-gradient(circle at 50% 50%, #5026EB 0%, #985BF5 100%); */
-    background-image: url(/img/foto\ anime.jpg);
+    /* filter: brightness(70%); */
+    /* background-repeat: no-repeat; */
+    background-image: url(/img/imagem-desfocada.jpg);
+    background-size: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 70vh;
+    height: auto;
     margin: 0;
 }
 
-.quiz-container{
+body::before {}
+
+.quiz-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -24,40 +29,58 @@ body{
     border-radius: 16px;
     box-shadow: 14px 12px 13px -6px rgba(17, 24, 39, 0.25);
     color: white;
-    backdrop-filter: blur(12px); /*efeito de desfoque*/
+    backdrop-filter: blur(5px);
+    /*efeito de desfoque*/
     background: rgba(255, 255, 255, 0.08);
 }
 
-#answers{
+#answers {
     display: flex;
     flex-direction: column;
     width: 100%;
     gap: 10px;
 }
 
-.botao{
+.botao {
     width: 100%;
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
 }
 
-#btn{
+#btn {
     margin-top: 20px;
+    display: block;
+    margin: 25px auto;
+
 }
 
-.correto{
+.correto {
     background-color: green;
 }
 
-.errou{
+.errou {
     background-color: red;
 }
-#current{
+
+#current {
     position: relative;
     margin: 0;
-    left:40%;
+    left: 40%;
     border: 1px solid white;
     border-radius: 5px;
     padding: 5px;
+}
+
+.score {
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(5px);
+    /*efeito de desfoque*/
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 0px 16px 16px 0px;
+    display: flex;
+    margin-top: 100px;
+    color: white;
+    width: 95px;
 }
