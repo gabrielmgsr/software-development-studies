@@ -82,4 +82,5 @@ body::before {}
     display: flex;
     margin-top: 100px;
     color: white;
+    width: 95px;
 }
