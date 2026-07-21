@@ -1,34 +1,6 @@
+import { questions } from "./questions.js"
 
-
-
-const question = [
-    {
-        question:'Naruto é de qual vila?',
-        answers:['Konoha', 'Suna', 'Kiri'],
-        correct:0
-    },
-    {
-        question:'Quem matou CELL em Dragon Ball Z?',
-        answers:['Goku', 'Kuririn', 'Gohan'],
-        correct:2
-    },
-    {
-        question:'Quem entregou o chapéu de palha para Luffy?',
-        answers:['O Rei dos Piratas', 'Shanks', 'Monkey D. Garp'],
-        correct:1
-    },
-    {
-        question:'Qual foi o segundo sensei de Ichigo?',
-        answers:['Kisuke Urahara', 'Rukia Kuchiki', 'Zangetsu'],
-        correct:0
-    },
-    {
-        question:'Qual habilidade principal de Suguru Geto?',
-        answers:['Dez Sombras', 'Proporção 7:3', 'Manipulação de Maldições'],
-        correct:2
-    },
-];
-
+let startIndex = 0;
 let current = 0;
 let score = 0;
 let respondeu = false;
@@ -42,14 +14,14 @@ const currentEl = document.getElementById('current')
 
 function mostrarPergunta() {
     respondeu = false;
-    const currentQuestion = question[current]
+    const currentQuestion = questions[current]
 
     questionEl.textContent = currentQuestion.question;
     // answersEl.textContent = currentQuestion.answers;
 
     answersEl.innerHTML = '';
 
-    question[current].answers.forEach((AnswersEll, index) =>{
+    questions[current].answers.forEach((AnswersEll, index) =>{
         const botao = document.createElement('button');
         botao.classList.add('botao');
         botao.textContent = `${index + 1}) ${AnswersEll}`
@@ -59,7 +31,7 @@ function mostrarPergunta() {
             if (respondeu) return;
              respondeu = true;
 
-            if (index === question[current].correct){
+            if (index === questions[current].correct){
                 botao.classList.add("correto")
                 score++;
                 scoreEl.textContent = `Pontuação: ${score}`;
@@ -68,11 +40,11 @@ function mostrarPergunta() {
             }
         })
     })
-    currentEl.textContent = `Pergunta ${current + 1} de ${question.length}` 
+    currentEl.textContent = `Pergunta ${current + 1} de ${questions.length}` 
 }
 btnNext.addEventListener('click', () =>{
         current++;
-        if(current < question.length){
+        if(current < questions.length){
             mostrarPergunta();
         } else{
             questionEl.textContent = 'Quiz finalizado!'

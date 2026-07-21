@@ -1,4 +1,4 @@
-[
+export const questions = [
   {
     "question": "Naruto é de qual vila?",
     "answers": [
