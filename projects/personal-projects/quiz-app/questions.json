@@ -1,0 +1,452 @@
+[
+  {
+    "question": "Naruto é de qual vila?",
+    "answers": [
+      "Konoha",
+      "Suna",
+      "Kiri"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "Quem matou Cell?",
+    "answers": [
+      "Goku",
+      "Kuririn",
+      "Gohan"
+    ],
+    "correct": 2
+  },
+  {
+    "question": "Quem deu o chapéu de palha ao Luffy?",
+    "answers": [
+      "Shanks",
+      "Ace",
+      "Garp"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "Qual é o caderno de Light?",
+    "answers": [
+      "Death Scroll",
+      "Death Note",
+      "Black Note"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "Qual é o poder de Eren?",
+    "answers": [
+      "Titã",
+      "Saiyajin",
+      "Ceifador"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "Quem é o irmão de Edward Elric?",
+    "answers": [
+      "Alphonse",
+      "Roy",
+      "Ling"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "Qual respiração Tanjiro usa primeiro?",
+    "answers": [
+      "Água",
+      "Fogo",
+      "Vento"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "Quem é o mentor de Itadori?",
+    "answers": [
+      "Gojo",
+      "Nanami",
+      "Geto"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "Quem busca ser Rei dos Piratas?",
+    "answers": [
+      "Zoro",
+      "Luffy",
+      "Sanji"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "Qual é o nome do dragão em DB?",
+    "answers": [
+      "Porunga",
+      "Shenlong",
+      "Igneel"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "Quem usa Bankai?",
+    "answers": [
+      "Ichigo",
+      "Naruto",
+      "Luffy"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "Quem é o rival de Naruto?",
+    "answers": [
+      "Sasuke",
+      "Gaara",
+      "Neji"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "Quem criou os Titãs Colossais das muralhas?",
+    "answers": [
+      "Rei Fritz",
+      "Levi",
+      "Erwin"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "Quem é a irmã de Tanjiro?",
+    "answers": [
+      "Shinobu",
+      "Nezuko",
+      "Kanao"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "Qual organização Itachi entrou?",
+    "answers": [
+      "Akatsuki",
+      "Anbu",
+      "Espada"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "Quem treinou Gon?",
+    "answers": [
+      "Biscuit",
+      "Hisoka",
+      "Netero"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "Quem é o símbolo da paz?",
+    "answers": [
+      "Endeavor",
+      "All Might",
+      "Aizawa"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "Asta possui qual grimório?",
+    "answers": [
+      "3 folhas",
+      "5 folhas",
+      "4 folhas"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "Anya consegue...",
+    "answers": [
+      "Voar",
+      "Ler mentes",
+      "Parar o tempo"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "Denji faz contrato com...",
+    "answers": [
+      "Pochita",
+      "Makima",
+      "Power"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "Kaneki pertence a qual anime?",
+    "answers": [
+      "Tokyo Ghoul",
+      "Parasyte",
+      "Bleach"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "Kirito é protagonista de...",
+    "answers": [
+      "SAO",
+      "No Game No Life",
+      "Overlord"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "Natsu é um...",
+    "answers": [
+      "Caçador",
+      "Dragon Slayer",
+      "Ninja"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "Qual Pokémon é elétrico?",
+    "answers": [
+      "Charmander",
+      "Pikachu",
+      "Squirtle"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "Quem é o capitão do bando do Chapéu de Palha?",
+    "answers": [
+      "Luffy",
+      "Zoro",
+      "Jinbe"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "Levi pertence a...",
+    "answers": [
+      "Bleach",
+      "Attack on Titan",
+      "Naruto"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "Qual é o nome do mestre de Goku?",
+    "answers": [
+      "Kame",
+      "Kaioh",
+      "Whis"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "Qual clã pertence Hinata?",
+    "answers": [
+      "Uchiha",
+      "Hyuga",
+      "Nara"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "Quem é o demônio das nove caudas?",
+    "answers": [
+      "Kurama",
+      "Gyuki",
+      "Matatabi"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "Roy Mustang controla...",
+    "answers": [
+      "Gelo",
+      "Fogo",
+      "Água"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "Gojo cobre os olhos com...",
+    "answers": [
+      "Máscara",
+      "Venda",
+      "Óculos"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "Zoro luta usando...",
+    "answers": [
+      "2 espadas",
+      "3 espadas",
+      "4 espadas"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "Qual é o sobrenome de Monkey D. Luffy?",
+    "answers": [
+      "Monkey",
+      "Gol",
+      "Portgas"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "Mikasa protege...",
+    "answers": [
+      "Armin",
+      "Eren",
+      "Levi"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "Qual é o nome do pai de Gohan?",
+    "answers": [
+      "Vegeta",
+      "Goku",
+      "Bardock"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "Quem é o deus da destruição?",
+    "answers": [
+      "Bills",
+      "Whis",
+      "Zeno"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "Neji pertence ao clã...",
+    "answers": [
+      "Hyuga",
+      "Uchiha",
+      "Akimichi"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "Hisoka usa...",
+    "answers": [
+      "Nen",
+      "Chakra",
+      "Ki"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "Qual anime tem alquimia?",
+    "answers": [
+      "FMA",
+      "Bleach",
+      "One Piece"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "Power pertence a...",
+    "answers": [
+      "Chainsaw Man",
+      "JJK",
+      "Tokyo Ghoul"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "Quem é o rival de Midoriya?",
+    "answers": [
+      "Bakugo",
+      "Todoroki",
+      "Iida"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "Quem é o capitão da 10ª divisão em Bleach no início?",
+    "answers": [
+      "Hitsugaya",
+      "Aizen",
+      "Byakuya"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "Qual anime tem Loid Forger?",
+    "answers": [
+      "Spy x Family",
+      "Death Note",
+      "Blue Lock"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "Qual é a profissão de Loid?",
+    "answers": [
+      "Professor",
+      "Espião",
+      "Médico"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "Qual é o objetivo de Light?",
+    "answers": [
+      "Ser Hokage",
+      "Criar novo mundo",
+      "Encontrar One Piece"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "Quem usa Sharingan?",
+    "answers": [
+      "Kakashi",
+      "Rock Lee",
+      "Jiraiya"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "Qual anime tem Sung Jinwoo?",
+    "answers": [
+      "Solo Leveling",
+      "Tower of God",
+      "God of High School"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "Qual cor do cabelo de Goku?",
+    "answers": [
+      "Azul",
+      "Preto",
+      "Loiro"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "Quem é o cozinheiro dos Chapéus de Palha?",
+    "answers": [
+      "Usopp",
+      "Sanji",
+      "Franky"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "Qual anime tem Satoru Gojo?",
+    "answers": [
+      "Jujutsu Kaisen",
+      "Bleach",
+      "Black Clover"
+    ],
+    "correct": 0
+  }
+]
