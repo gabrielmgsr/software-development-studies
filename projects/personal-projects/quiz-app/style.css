@@ -1,5 +1,5 @@
 body {
-    background-color: #423737;
+    background-color: black;
     background-size: 100vw;
     display: flex;
     justify-content: center;
@@ -43,7 +43,7 @@ body::before {}
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
-    background-color: #665555;
+    background-color: gray;
 }
 
 #btn {
@@ -62,9 +62,9 @@ body::before {}
 }
 
 #current {
-    position: relative;
+    /* position: relative;
     margin: 0;
-    left: 40%;
+    left: 40%; */
     border: 1px solid white;
     border-radius: 5px;
     padding: 5px;
