@@ -9,25 +9,30 @@
 </head>
 
 <body>
-    <div class="quiz-container">
-        <p id="current"></p>
+    <div class="navigation">
         <h1>Quiz de Anime</h1>
-        <div class="quiz">
-            <h2 id="question"></h2>
+        <nav>Subir</nav>
+    </div>
 
-            <div id="answers">
+    <div class="container">
+        <div class="quiz-container">
+            <p id="current"></p>
+
+            <div class="quiz">
+                <h2 id="question"></h2>
+
+                <div id="answers"></div>
+
+                <button id="btn">Próxima</button>
             </div>
+        </div>
 
-            <button id="btn">Próxima</button>
+        <div class="score">
+            <p id="score">Pontuação: 0</p>
         </div>
     </div>
 
-    <div class="score">
-        <p id="score">Pontuação: 0</p>
-    </div>
-
     <script type="module" src="script.js"></script>
-
 </body>
 
 </html>

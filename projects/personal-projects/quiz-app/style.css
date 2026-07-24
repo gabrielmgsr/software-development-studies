@@ -1,34 +1,30 @@
 body {
     background-color: black;
-    background-size: 100vw;
+    margin: 0;
+    color: white;
+}
+
+.navigation{
+    position: fixed;
+    display: flex;
+    align-items: center;
+}
+
+.container{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 80vh;
-    margin: 0;
+    gap: 30px;
+    /* min-height: calc(100vh - 60px); */
+    min-height: 100vh;
 }
 
-body::before {}
 
 .quiz-container {
+    width: 300px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-
-    width: 400px;
-    min-height: 400px;
-
-    padding: 20px;
-    margin-top: 100px;
-
-    /* background: radial-gradient(circle at 50% 50%, #5026EB 0%, #985BF5 100%); */
-    /* border: 1px solid rgba(221, 11, 11, 0.15); */
-    /* border-radius: 16px; */
-    /* box-shadow: 14px 12px 13px -6px rgba(17, 24, 39, 0.25); */
-    color: white;
-    /* backdrop-filter: blur(5px); */
-    /*efeito de desfoque*/
-    /* background: rgba(54, 49, 3, 0.425); */
 }
 
 #answers {
@@ -60,7 +56,6 @@ body::before {}
 
 .correto {
     border-color: green;
-    /* background-color: green; */
 }
 
 .errou {
@@ -68,9 +63,7 @@ body::before {}
 }
 
 #current {
-    /* position: relative;
-    margin: 0;
-    left: 40%; */
+    text-align: center;
     border: 1px solid white;
     border-radius: 5px;
     padding: 5px;
@@ -78,14 +71,13 @@ body::before {}
 
 .score {
     position: relative;
-    /* border: 1px solid rgba(255, 255, 255, 0.15); */
-    backdrop-filter: blur(5px);
-    /*efeito de desfoque*/
-    /* background: rgba(54, 49, 3, 0.425); */
+    color: white;
+    margin-bottom: 10px;
+    /* backdrop-filter: blur(5px);
     border-radius: 0px 16px 16px 0px;
-    display: flex;
-    margin-top: 150px;
+    display: block;
+    transform: translateX(50%);
     color: white;
     width: 95px;
-    padding-left: 5px;
+    padding-left: 5px; */
 }
