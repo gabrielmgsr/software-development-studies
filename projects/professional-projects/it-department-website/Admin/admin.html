@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel do Administrador | Departamento de TI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+    <!-- LOADING SCREEN -->
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <div class="atom-loader">
+                <div class="atom-nucleus"></div>
+                <div class="atom-orbit orbit-1"></div>
+                <div class="atom-orbit orbit-2"></div>
+                <div class="atom-orbit orbit-3"></div>
+            </div>
+            <div class="loader-text">CARREGANDO PAINEL ADMIN</div>
+        </div>
+    </div>
+
+    <!-- CURSOR GLOW -->
+    <div class="cursor-glow" id="cursorGlow"></div>
+
+    <!-- BACKGROUND PARTICLES & GRID -->
+    <div class="hero-bg">
+        <canvas id="particles-canvas"></canvas>
+        <div class="hero-grid"></div>
+    </div>
+
+    <!-- TELA DE LOGIN -->
+    <div class="login-wrapper" id="loginWrapper">
+        <div class="login-card">
+            <div class="logo-icon-wrap">
+                <div class="logo-icon">M</div>
+            </div>
+            <h1 class="login-title">Área Restrita TI</h1>
+            <p class="login-subtitle">Prefeitura de Maracaju — Autenticação</p>
+            
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="username">Usuário</label>
+                    <input type="text" id="username" placeholder="Digite o usuário" required autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" placeholder="••••••••" required>
+                </div>
+                <div class="login-error" id="loginError">Usuário ou senha incorretos!</div>
+                <button type="submit" class="btn-admin-primary">⚡ Entrar no Sistema</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- PAINEL ADMIN DASHBOARD (Oculto antes do login) -->
+    <div class="admin-dashboard hidden" id="adminDashboard">
+        <!-- TOPBAR -->
+        <header class="admin-header">
+            <div class="admin-brand">
+                <div class="logo-icon">M</div>
+                <div>
+                    <span class="admin-brand-title">Gestão de Notícias</span>
+                    <span class="admin-brand-sub">Departamento de TI — Maracaju</span>
+                </div>
+            </div>
+            <div class="admin-user-info">
+                <span class="user-badge">🟢 Administrador Conectado</span>
+                <button class="btn-logout" id="btnLogout">Sair ➔</button>
+            </div>
+        </header>
+
+        <!-- DASHBOARD CONTAINER -->
+        <main class="admin-main">
+            <div class="admin-grid">
+                <!-- FORMULÁRIO DE PUBLICAÇÃO -->
+                <section class="admin-card">
+                    <div class="card-header">
+                        <h2>📰 Publicar Nova Notícia</h2>
+                        <span class="badge-tag">Editor</span>
+                    </div>
+                    <form id="newsForm" class="news-form">
+                        <div class="form-group">
+                            <label for="newsTitle">Título da Notícia</label>
+                            <input type="text" id="newsTitle" placeholder="Ex: Novo servidor ativado na secretaria de saúde" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="newsCategory">Categoria / Tag</label>
+                                <select id="newsCategory">
+                                    <option value="Destaque">🔥 Destaque</option>
+                                    <option value="NOVO">🚀 Novo Sistema</option>
+                                    <option value="URGENTE">⚠️ Manutenção / Alerta</option>
+                                    <option value="INFO">🔐 Segurança / Info</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="newsIcon">Ícone Emoji</label>
+                                <input type="text" id="newsIcon" value="🏗️" placeholder="Ex: 🏗️, 🔐, 🤖" maxlength="2">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="newsExcerpt">Resumo / Conteúdo</label>
+                            <textarea id="newsExcerpt" rows="4" placeholder="Escreva uma breve síntese das informações da notícia..." required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="newsCode">Bloco de Configuração / Log (Opcional)</label>
+                            <textarea id="newsCode" rows="3" class="code-font" placeholder="// Exemplo: apiVersion: v1 status: ACTIVE"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-admin-success">🚀 Publicar Notícia</button>
+                    </form>
+                </section>
+
+                <!-- LISTA DE NOTÍCIAS CADASTRADAS -->
+                <section class="admin-card">
+                    <div class="card-header">
+                        <h2>📌 Notícias Publicadas</h2>
+                        <span class="news-count" id="newsCount">0 notícias</span>
+                    </div>
+                    <div class="news-list-container" id="newsList">
+                        <!-- Gerado via JavaScript -->
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
