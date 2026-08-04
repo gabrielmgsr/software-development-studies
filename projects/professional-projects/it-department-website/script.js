@@ -311,3 +311,67 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 console.log('%c🚀 Prefeitura de Maracaju - Departamento de TI', 'color: #F9C61A; font-size: 16px; font-weight: bold;');
+
+// ===== CARREGAR NOTÍCIAS DO PAINEL ADMIN NO SITE PRINCIPAL =====
+function loadMainPageNews() {
+    const newsGrid = document.getElementById('mainNewsGrid');
+    if (!newsGrid) return;
+
+    // Busca as notícias salvas pelo Admin no LocalStorage
+    const savedNews = localStorage.getItem('maracaju_ti_news');
+    
+    // Se não houver notícias cadastradas, não faz nada
+    if (!savedNews) return;
+
+    const newsList = JSON.parse(savedNews);
+    if (newsList.length === 0) return;
+
+    // Limpa a grid antes de renderizar
+    newsGrid.innerHTML = '';
+
+    // Renderiza cada notícia cadastrada no Admin
+    newsList.forEach((news, index) => {
+        // Se for a primeira notícia, faz o card grande (Destaque)
+        if (index === 0) {
+            const mainCard = document.createElement('div');
+            mainCard.className = 'news-card-main visible';
+            mainCard.innerHTML = `
+                <div class="news-img">
+                    ${news.image ? `<img src="${news.image}" style="width:100%;height:100%;object-fit:cover;">` : news.icon || '🏗️'}
+                    <span class="news-img-label tag tag-urgent">${news.category || 'Destaque'}</span>
+                </div>
+                <div class="news-card-body">
+                    <div class="news-date">📅 ${news.date}</div>
+                    <h3 class="news-title">${news.title}</h3>
+                    <p class="news-excerpt">${news.excerpt}</p>
+                    ${news.audio ? `<div style="margin-top:16px;"><audio controls src="${news.audio}" style="width:100%;height:36px;"></audio></div>` : ''}
+                    ${news.code ? `
+                        <div class="code-block" style="margin-top:24px;">
+                            <pre style="margin:0;white-space:pre-wrap;color:var(--verde);">${news.code}</pre>
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+            newsGrid.appendChild(mainCard);
+        } else {
+            // Demais notícias ficam em cards menores
+            const smCard = document.createElement('div');
+            smCard.className = 'news-card-sm visible';
+            smCard.innerHTML = `
+                <div class="news-thumb" style="background:rgba(249, 198, 26, 0.15);">
+                    ${news.image ? `<img src="${news.image}" style="width:100%;height:100%;object-fit:cover;border-radius:12px;">` : (news.icon || '📰')}
+                </div>
+                <div style="flex:1;">
+                    <div class="news-date">📅 ${news.date} — <span style="color:var(--verde);">${news.category}</span></div>
+                    <h3 class="news-title">${news.title}</h3>
+                    <p class="news-excerpt">${news.excerpt}</p>
+                    ${news.audio ? `<div style="margin-top:10px;"><audio controls src="${news.audio}" style="width:100%;height:32px;"></audio></div>` : ''}
+                </div>
+            `;
+            newsGrid.appendChild(smCard);
+        }
+    });
+}
+
+// Executa a função assim que a página carregar
+document.addEventListener('DOMContentLoaded', loadMainPageNews);

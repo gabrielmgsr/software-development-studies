@@ -56,26 +56,42 @@ document.addEventListener('mousemove', (e) => {
     cursorGlow.style.top = e.clientY + 'px';
 });
 
-// ===== LÓGICA DE AUTENTICAÇÃO (LOGIN) =====
+// ===== AUTENTICAÇÃO E LOGIN DE ADMINISTRADORES =====
 const loginForm = document.getElementById('loginForm');
 const loginWrapper = document.getElementById('loginWrapper');
 const adminDashboard = document.getElementById('adminDashboard');
 const loginError = document.getElementById('loginError');
 const btnLogout = document.getElementById('btnLogout');
 
-// Verifica se já está logado na sessão atual
+// Lista inicial de admins
+const defaultAdmins = [
+    { username: 'admin', password: 'Senha@2026' }
+];
+
+function getAdmins() {
+    const saved = localStorage.getItem('maracaju_ti_admins');
+    if (!saved) {
+        localStorage.setItem('maracaju_ti_admins', JSON.stringify(defaultAdmins));
+        return defaultAdmins;
+    }
+    return JSON.parse(saved);
+}
+
 if (sessionStorage.getItem('adminLoggedIn') === 'true') {
     showDashboard();
 }
 
 loginForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    const userVal = document.getElementById('username').value.trim();
-    const passVal = document.getElementById('password').value;
+    const uVal = document.getElementById('username').value.trim();
+    const pVal = document.getElementById('password').value;
+    const admins = getAdmins();
 
-    // CREDENCIAIS SOLICITADAS: admin / Senha@2026
-    if (userVal === 'admin' && passVal === 'Senha@2026') {
+    const userMatch = admins.find(a => a.username === uVal && a.password === pVal);
+
+    if (userMatch) {
         sessionStorage.setItem('adminLoggedIn', 'true');
+        sessionStorage.setItem('activeUser', uVal);
         loginError.classList.remove('active');
         showDashboard();
     } else {
@@ -85,6 +101,7 @@ loginForm.addEventListener('submit', (e) => {
 
 btnLogout.addEventListener('click', () => {
     sessionStorage.removeItem('adminLoggedIn');
+    sessionStorage.removeItem('activeUser');
     adminDashboard.classList.add('hidden');
     loginWrapper.classList.remove('hidden');
 });
@@ -92,15 +109,67 @@ btnLogout.addEventListener('click', () => {
 function showDashboard() {
     loginWrapper.classList.add('hidden');
     adminDashboard.classList.remove('hidden');
+    document.getElementById('currentUserBadge').textContent = `🟢 Logado: ${sessionStorage.getItem('activeUser') || 'Admin'}`;
     renderNewsList();
+    renderUserList();
 }
 
-// ===== GERENCIAMENTO DE NOTÍCIAS (LOCALSTORAGE) =====
+// ===== GESTÃO DE USUÁRIOS ADMIN =====
+const addUserForm = document.getElementById('addUserForm');
+const userList = document.getElementById('userList');
+const userCount = document.getElementById('userCount');
+
+addUserForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const newUser = document.getElementById('newUsername').value.trim();
+    const newPass = document.getElementById('newPassword').value;
+
+    let admins = getAdmins();
+    if (admins.some(a => a.username === newUser)) {
+        alert('❌ Este nome de usuário já existe!');
+        return;
+    }
+
+    admins.push({ username: newUser, password: newPass });
+    localStorage.setItem('maracaju_ti_admins', JSON.stringify(admins));
+    addUserForm.reset();
+    renderUserList();
+    alert('✅ Novo administrador cadastrado com sucesso!');
+});
+
+function renderUserList() {
+    const admins = getAdmins();
+    userList.innerHTML = '';
+    userCount.textContent = `${admins.length} usuários`;
+
+    admins.forEach((item, index) => {
+        const div = document.createElement('div');
+        div.className = 'admin-news-item';
+        div.innerHTML = `
+            <div class="admin-news-item-body">
+                <div class="admin-news-item-title">👤 ${item.username}</div>
+            </div>
+            ${item.username !== 'admin' ? `<button class="btn-delete" onclick="deleteUser(${index})">Remover</button>` : '<span style="font-size:11px;color:var(--amarelo);">Principal</span>'}
+        `;
+        userList.appendChild(div);
+    });
+}
+
+window.deleteUser = function(index) {
+    if (confirm('Deseja remover este acesso de administrador?')) {
+        let admins = getAdmins();
+        admins.splice(index, 1);
+        localStorage.setItem('maracaju_ti_admins', JSON.stringify(admins));
+        renderUserList();
+    }
+};
+
+// ===== GESTÃO DE NOTÍCIAS (COM SUPORTE A FOTOS, ÁUDIOS E CÓDIGO/LOGS) =====
 const newsForm = document.getElementById('newsForm');
 const newsList = document.getElementById('newsList');
 const newsCount = document.getElementById('newsCount');
 
-// Notícias Padrão (Exemplo Inicial caso esteja vazio)
+// Notícias originais padrão mantidas
 const defaultNews = [
     {
         id: 1,
@@ -109,7 +178,9 @@ const defaultNews = [
         icon: "🏗️",
         date: "15 de Janeiro, 2025",
         excerpt: "Toda a infraestrutura municipal passou por um processo de modernização e migração com zero downtime.",
-        code: "// system-status.config — Maracaju Municipal Core\napiVersion: v1\nkind: InfrastructureStatus\nmetadata:\n  municipality: maracaju-ms\n  status: 100% OPERATIONAL"
+        code: "// system-status.config — Maracaju Municipal Core\napiVersion: v1\nkind: InfrastructureStatus\nmetadata:\n  municipality: maracaju-ms\n  status: 100% OPERATIONAL",
+        image: null,
+        audio: null
     },
     {
         id: 2,
@@ -118,7 +189,9 @@ const defaultNews = [
         icon: "🔐",
         date: "12 de Janeiro, 2025",
         excerpt: "Verificação contínua de segurança e firewall de nova geração ativados em toda a rede.",
-        code: ""
+        code: "",
+        image: null,
+        audio: null
     }
 ];
 
@@ -134,6 +207,47 @@ function getNews() {
 function saveNews(newsArray) {
     localStorage.setItem('maracaju_ti_news', JSON.stringify(newsArray));
     renderNewsList();
+}
+
+newsForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const imageFile = document.getElementById('newsImage').files[0];
+    const audioFile = document.getElementById('newsAudio').files[0];
+
+    const imageBase64 = imageFile ? await fileToBase64(imageFile) : null;
+    const audioBase64 = audioFile ? await fileToBase64(audioFile) : null;
+
+    const now = new Date();
+    const dateFormatted = `${now.getDate()} de ${getMonthName(now.getMonth())}, ${now.getFullYear()}`;
+
+    const newPost = {
+        id: Date.now(),
+        title: document.getElementById('newsTitle').value.trim(),
+        category: document.getElementById('newsCategory').value,
+        icon: document.getElementById('newsIcon').value.trim() || '📰',
+        date: dateFormatted,
+        excerpt: document.getElementById('newsExcerpt').value.trim(),
+        code: document.getElementById('newsCode') ? document.getElementById('newsCode').value.trim() : '',
+        image: imageBase64,
+        audio: audioBase64
+    };
+
+    const news = getNews();
+    news.unshift(newPost);
+    saveNews(news);
+
+    newsForm.reset();
+    alert('✅ Notícia publicada com sucesso!');
+});
+
+function fileToBase64(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+    });
 }
 
 function renderNewsList() {
@@ -154,35 +268,14 @@ function renderNewsList() {
                 <div class="admin-news-item-title">${item.icon} ${item.title}</div>
                 <div class="admin-news-item-date">📅 ${item.date} — <span style="color:var(--verde);">${item.category}</span></div>
                 <div class="admin-news-item-desc">${item.excerpt}</div>
+                ${item.image ? `<div style="margin-top:8px;"><img src="${item.image}" style="max-width:150px;max-height:100px;border-radius:8px;object-fit:cover;"></div>` : ''}
+                ${item.audio ? `<div style="margin-top:8px;"><audio controls src="${item.audio}" style="height:32px;width:100%;max-width:300px;"></audio></div>` : ''}
             </div>
             <button class="btn-delete" onclick="deleteNews(${item.id})">Excluir</button>
         `;
         newsList.appendChild(div);
     });
 }
-
-newsForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const news = getNews();
-    const now = new Date();
-    const dateFormatted = `${now.getDate()} de ${getMonthName(now.getMonth())}, ${now.getFullYear()}`;
-
-    const newPost = {
-        id: Date.now(),
-        title: document.getElementById('newsTitle').value.trim(),
-        category: document.getElementById('newsCategory').value,
-        icon: document.getElementById('newsIcon').value.trim() || '📰',
-        date: dateFormatted,
-        excerpt: document.getElementById('newsExcerpt').value.trim(),
-        code: document.getElementById('newsCode').value.trim()
-    };
-
-    news.unshift(newPost); // Adiciona no início
-    saveNews(news);
-
-    newsForm.reset();
-    alert('✅ Notícia publicada com sucesso!');
-});
 
 window.deleteNews = function(id) {
     if (confirm('Tem certeza que deseja excluir esta notícia?')) {

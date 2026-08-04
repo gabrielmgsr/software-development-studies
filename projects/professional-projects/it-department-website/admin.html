@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel do Administrador | Departamento de TI</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="./admin.css">
 </head>
 <body>
 
     <!-- LOADING SCREEN -->
-    <div class="loader" id="loader">
+    <div class="loader hidden" id="loader">
         <div class="loader-content">
             <div class="atom-loader">
                 <div class="atom-nucleus"></div>
@@ -25,7 +25,7 @@
     <!-- CURSOR GLOW -->
     <div class="cursor-glow" id="cursorGlow"></div>
 
-    <!-- BACKGROUND PARTICLES & GRID -->
+    <!-- BACKGROUND -->
     <div class="hero-bg">
         <canvas id="particles-canvas"></canvas>
         <div class="hero-grid"></div>
@@ -35,7 +35,7 @@
     <div class="login-wrapper" id="loginWrapper">
         <div class="login-card">
             <div class="logo-icon-wrap">
-                <div class="logo-icon">M</div>
+                <img src="/IMG/Icone.png" alt="Logo TI" class="logo-img">
             </div>
             <h1 class="login-title">Área Restrita TI</h1>
             <p class="login-subtitle">Prefeitura de Maracaju — Autenticação</p>
@@ -55,27 +55,25 @@
         </div>
     </div>
 
-    <!-- PAINEL ADMIN DASHBOARD (Oculto antes do login) -->
+    <!-- PAINEL ADMIN DASHBOARD -->
     <div class="admin-dashboard hidden" id="adminDashboard">
-        <!-- TOPBAR -->
         <header class="admin-header">
             <div class="admin-brand">
-                <div class="logo-icon">M</div>
-                <div>
-                    <span class="admin-brand-title">Gestão de Notícias</span>
-                    <span class="admin-brand-sub">Departamento de TI — Maracaju</span>
+                <img src="IMG/Icone.png" alt="Logo TI" class="logo-img">
+            <div>
+                <span class="admin-brand-title">Painel de Controle Central</span>
+                <span class="admin-brand-sub">Departamento de TI — Maracaju</span>
                 </div>
             </div>
             <div class="admin-user-info">
-                <span class="user-badge">🟢 Administrador Conectado</span>
+                <span class="user-badge" id="currentUserBadge">🟢 Admin Conectado</span>
                 <button class="btn-logout" id="btnLogout">Sair ➔</button>
             </div>
         </header>
 
-        <!-- DASHBOARD CONTAINER -->
         <main class="admin-main">
             <div class="admin-grid">
-                <!-- FORMULÁRIO DE PUBLICAÇÃO -->
+                <!-- FORMULÁRIO DE PUBLICAÇÃO DE NOTÍCIAS -->
                 <section class="admin-card">
                     <div class="card-header">
                         <h2>📰 Publicar Nova Notícia</h2>
@@ -84,7 +82,7 @@
                     <form id="newsForm" class="news-form">
                         <div class="form-group">
                             <label for="newsTitle">Título da Notícia</label>
-                            <input type="text" id="newsTitle" placeholder="Ex: Novo servidor ativado na secretaria de saúde" required>
+                            <input type="text" id="newsTitle" placeholder="Ex: Novo servidor ativado" required>
                         </div>
 
                         <div class="form-row">
@@ -98,34 +96,68 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="newsIcon">Ícone Emoji</label>
-                                <input type="text" id="newsIcon" value="🏗️" placeholder="Ex: 🏗️, 🔐, 🤖" maxlength="2">
+                                <label for="newsIcon">Emoji/Ícone</label>
+                                <input type="text" id="newsIcon" value="🏗️" placeholder="Ex: 🏗️" maxlength="2">
+                            </div>
+                        </div>
+
+                        <!-- NOVOS CAMPOS: UPLOAD DE MÍDIA -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="newsImage">📷 Anexar Foto (Imagem)</label>
+                                <input type="file" id="newsImage" accept="image/*">
+                            </div>
+                            <div class="form-group">
+                                <label for="newsAudio">🎙️ Anexar Áudio</label>
+                                <input type="file" id="newsAudio" accept="audio/*">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="newsExcerpt">Resumo / Conteúdo</label>
-                            <textarea id="newsExcerpt" rows="4" placeholder="Escreva uma breve síntese das informações da notícia..." required></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="newsCode">Bloco de Configuração / Log (Opcional)</label>
-                            <textarea id="newsCode" rows="3" class="code-font" placeholder="// Exemplo: apiVersion: v1 status: ACTIVE"></textarea>
+                            <textarea id="newsExcerpt" rows="4" placeholder="Escreva a notícia..." required></textarea>
                         </div>
 
                         <button type="submit" class="btn-admin-success">🚀 Publicar Notícia</button>
                     </form>
                 </section>
 
-                <!-- LISTA DE NOTÍCIAS CADASTRADAS -->
+                <!-- LISTA DE NOTÍCIAS PUBLICADAS -->
                 <section class="admin-card">
                     <div class="card-header">
                         <h2>📌 Notícias Publicadas</h2>
                         <span class="news-count" id="newsCount">0 notícias</span>
                     </div>
-                    <div class="news-list-container" id="newsList">
-                        <!-- Gerado via JavaScript -->
+                    <div class="news-list-container" id="newsList"></div>
+                </section>
+            </div>
+
+            <!-- NOVA SEÇÃO: ADICIONAR NOVOS USUÁRIOS ADMIN -->
+            <div class="admin-grid" style="margin-top: 30px;">
+                <section class="admin-card">
+                    <div class="card-header">
+                        <h2>👤 Adicionar Usuário Admin</h2>
+                        <span class="badge-tag">Gestão de Acesso</span>
                     </div>
+                    <form id="addUserForm" class="news-form">
+                        <div class="form-group">
+                            <label for="newUsername">Novo Usuário</label>
+                            <input type="text" id="newUsername" placeholder="Ex: joao.ti" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="newPassword">Senha</label>
+                            <input type="password" id="newPassword" placeholder="••••••••" required>
+                        </div>
+                        <button type="submit" class="btn-admin-primary">➕ Cadastrar Administrador</button>
+                    </form>
+                </section>
+
+                <section class="admin-card">
+                    <div class="card-header">
+                        <h2>📋 Administradores Cadastrados</h2>
+                        <span class="news-count" id="userCount">0 usuários</span>
+                    </div>
+                    <div class="news-list-container" id="userList"></div>
                 </section>
             </div>
         </main>

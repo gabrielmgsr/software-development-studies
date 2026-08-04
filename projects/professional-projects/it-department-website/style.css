@@ -348,11 +348,11 @@ body {
 .hero-title .gradient-text {
     background: linear-gradient(135deg, var(--amarelo) 0%, var(--verde) 50%, var(--branco) 100%);
     -webkit-background-clip: text;
+    background-clip: text; /* <-- ADICIONE ESTA LINHA */
     -webkit-text-fill-color: transparent;
     background-size: 200% auto;
     animation: gradientShift 4s ease infinite;
 }
-
 @keyframes gradientShift {
     0%, 100% { background-position: 0% center; }
     50% { background-position: 100% center; }
@@ -1639,4 +1639,13 @@ body {
     z-index: 10 !important;
     pointer-events: auto !important;
     cursor: pointer !important;
+}
+
+/* Estilo da Logo com imagem localizada em IMG/Icone.png */
+.logo-img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+    border-radius: 8px;
+    filter: drop-shadow(0 0 8px rgba(44, 194, 124, 0.4));
 }

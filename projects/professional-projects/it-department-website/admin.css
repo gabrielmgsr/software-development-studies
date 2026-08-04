@@ -481,3 +481,12 @@ body {
 @media (max-width: 900px) {
     .admin-grid { grid-template-columns: 1fr; }
 }
+
+/* Estilo da Logo com imagem localizada em IMG/Icone.png */
+.logo-img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+    border-radius: 8px;
+    filter: drop-shadow(0 0 8px rgba(44, 194, 124, 0.4));
+}

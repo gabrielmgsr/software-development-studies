@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Departamento de TI | Prefeitura de Maracaju</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
 
     <!-- LOADING SCREEN COM ÁTOMO ANIMADO -->
-    <div class="loader" id="loader">
+    <div class="loader hidder" id="loader">
         <div class="loader-content">
             <div class="atom-loader">
                 <div class="atom-nucleus"></div>
@@ -35,7 +35,7 @@
     <!-- NAVBAR (CABEÇALHO) -->
     <nav class="navbar" id="navbar">
         <a href="#" class="nav-logo">
-            <div class="logo-icon">M</div>
+            <img src="IMG/Icone.png" alt="Logo TI" class="logo-img">
             <span class="logo-text">Departamento de TI</span>
         </a>
         <ul class="nav-links">
@@ -45,7 +45,10 @@
             <li><a href="#news">Notícias</a></li>
             <li><a href="#team">Equipe</a></li>
         </ul>
-        <a href="#contact" class="nav-cta">Contato →</a>
+        <div style="display: flex; gap: 10px; align-items: center;">
+            <a href="admin.html" class="btn-secondary" style="padding: 10px 18px; font-size: 14px;">🔐 Admin</a>
+            <a href="#contact" class="nav-cta">Contato →</a>
+        </div>
         <button class="mobile-toggle" id="mobileToggle">
             <span></span>
             <span></span>
@@ -74,12 +77,8 @@
                 Gerenciamos, otimizamos e protegemos a infraestrutura de TI do município com tecnologia de ponta e eficiência pública.
             </p>
             <div class="hero-actions">
-                <a href="#monitor" class="btn-primary">
-                    ⚡ Ver Dashboard ao Vivo
-                </a>
-                <a href="#services" class="btn-secondary">
-                    Explore nossos serviços ↓
-                </a>
+                <a href="#monitor" class="btn-primary">⚡ Ver Dashboard ao Vivo</a>
+                <a href="#services" class="btn-secondary">Explore nossos serviços ↓</a>
             </div>
             <div class="hero-stats">
                 <div class="hero-stat">
@@ -105,15 +104,6 @@
             <div class="ticker-item"><span class="dot" style="background:var(--amarelo)"></span> ⚠️ Alerta: Manutenção agendada no data center B — Sábado 03h <span class="tag tag-urgent">URGENTE</span></div>
             <div class="ticker-item"><span class="dot" style="background:var(--verde)"></span> ✅ Backup automatizado completado — 2.4PB sincronizados</div>
             <div class="ticker-item"><span class="dot"></span> 🚀 Nova infraestrutura municipal deployada em 3 secretarias <span class="tag tag-new">NOVO</span></div>
-            <div class="ticker-item"><span class="dot" style="background:var(--amarelo)"></span> 📊 Relatório Q4: Redução de 34% nos custos de infraestrutura</div>
-            <div class="ticker-item"><span class="dot" style="background:var(--verde)"></span> 🔐 Firewall atualizado — 142 ameaças bloqueadas hoje <span class="tag tag-info">INFO</span></div>
-            <!-- Duplicate for seamless loop -->
-            <div class="ticker-item"><span class="dot"></span> 🔥 <strong>Cloud Migration</strong> — Fase 3 concluída com sucesso <span class="tag tag-new">NOVO</span></div>
-            <div class="ticker-item"><span class="dot" style="background:var(--amarelo)"></span> ⚠️ Alerta: Manutenção agendada no data center B — Sábado 03h <span class="tag tag-urgent">URGENTE</span></div>
-            <div class="ticker-item"><span class="dot" style="background:var(--verde)"></span> ✅ Backup automatizado completado — 2.4PB sincronizados</div>
-            <div class="ticker-item"><span class="dot"></span> 🚀 Nova infraestrutura municipal deployada em 3 secretarias <span class="tag tag-new">NOVO</span></div>
-            <div class="ticker-item"><span class="dot" style="background:var(--amarelo)"></span> 📊 Relatório Q4: Redução de 34% nos custos de infraestrutura</div>
-            <div class="ticker-item"><span class="dot" style="background:var(--verde)"></span> 🔐 Firewall atualizado — 142 ameaças bloqueadas hoje <span class="tag tag-info">INFO</span></div>
         </div>
     </div>
 
@@ -129,25 +119,21 @@
                 <div class="stat-icon blue">🖥️</div>
                 <div class="stat-number blue counter-wrap" data-target="1247" data-suffix="">0</div>
                 <div class="stat-label">Equipamentos Gerenciados</div>
-                <div class="stat-change up">↑ 12.4% vs mês anterior</div>
             </div>
             <div class="stat-card">
                 <div class="stat-icon purple">🔒</div>
                 <div class="stat-number purple counter-wrap" data-target="98.7" data-suffix="%" data-decimal="true">0</div>
                 <div class="stat-label">Segurança Score</div>
-                <div class="stat-change up">↑ 3.2% vs mês anterior</div>
             </div>
             <div class="stat-card">
                 <div class="stat-icon pink">🎫</div>
                 <div class="stat-number pink counter-wrap" data-target="5642" data-suffix="">0</div>
                 <div class="stat-label">Tickets Resolvidos (Mês)</div>
-                <div class="stat-change up">↑ 8.7% vs mês anterior</div>
             </div>
             <div class="stat-card">
                 <div class="stat-icon green">💰</div>
                 <div class="stat-number green counter-wrap" data-target="34" data-suffix="%" data-decimal="true">0</div>
                 <div class="stat-label">Redução de Custos</div>
-                <div class="stat-change up">↑ Economia de R$ 2.1M</div>
             </div>
         </div>
     </section>
@@ -157,286 +143,55 @@
         <div class="section-header reveal">
             <div class="section-label">O que fazemos</div>
             <h2 class="section-title">Serviços</h2>
-            <p class="section-desc">Soluções completas para transformar e proteger a infraestrutura digital pública.</p>
         </div>
         <div class="services-grid">
             <div class="service-card">
                 <div class="service-icon-wrap si-1">⏱️</div>
                 <h3 class="service-title">SGP - Sistema de Pontos</h3>
-                <p class="service-desc">Gestão e acompanhamento da frequência e registro de ponto dos servidores municipais de forma rápida e centralizada.</p>
-                <a href="https://ponto.maracaju.ms.gov.br" target="_blank" rel="noopener noreferrer" class="service-link">Acessar →</a>
+                <p class="service-desc">Gestão e acompanhamento da frequência e registro de ponto dos servidores municipais.</p>
+                <a href="https://ponto.maracaju.ms.gov.br" target="_blank" class="service-link">Acessar →</a>
             </div>
             <div class="service-card">
                 <div class="service-icon-wrap si-2">📞</div>
                 <h3 class="service-title">Ramais</h3>
-                <p class="service-desc">Buscador interno de ramais telefônicos das secretarias e setores da Prefeitura de Maracaju.</p>
-                <a href="https://ti.maracaju.ms.gov.br" target="_blank" rel="noopener noreferrer" class="service-link">Acessar →</a>
+                <p class="service-desc">Buscador interno de ramais telefônicos da Prefeitura de Maracaju.</p>
+                <a href="https://ti.maracaju.ms.gov.br" target="_blank" class="service-link">Acessar →</a>
             </div>
             <div class="service-card">
                 <div class="service-icon-wrap si-3">🤖</div>
                 <h3 class="service-title">Automação & Processos</h3>
-                <p class="service-desc">Pipelines de integração, automação de processos governamentais e modernização de sistemas.</p>
+                <p class="service-desc">Pipelines de integração e modernização de sistemas.</p>
                 <a href="#" class="service-link">Acessar →</a>
-            </div>
-            <div class="service-card">
-                <div class="service-icon-wrap si-4">📊</div>
-                <h3 class="service-title">Data & Analytics</h3>
-                <p class="service-desc">Arquitetura de dados públicos, portais de transparência e dashboards em tempo real.</p>
-                <a href="#" class="service-link">Acessar →</a>
-            </div>
-            <div class="service-card">
-                <div class="service-icon-wrap si-5">🌐</div>
-                <h3 class="service-title">Rede & Conectividade</h3>
-                <p class="service-desc">Rede corporativa municipal, fibra óptica pública e conexão segura entre secretarias.</p>
-                <a href="#" class="service-link">Acessar →</a>
-            </div>
-            <div class="service-card">
-                <div class="service-icon-wrap si-6">🎧</div>
-                <h3 class="service-title">Suporte & Service Desk</h3>
-                <p class="service-desc">Atendimento aos servidores, SLA de alto nível e resolução rápida via portal inteligente.</p>
-                <a href="#" class="service-link">Acessar →</a>
-            </div>
-        </div>
-    </section>
-    
-    <!-- LIVE MONITOR SECTION -->
-    <section class="section monitor-section" id="monitor">
-        <div class="section-header reveal">
-            <div class="section-label">Monitoramento ao vivo</div>
-            <h2 class="section-title">Painel de<br><span class="gradient-text">Controle Central</span></h2>
-            <p class="section-desc">Todos os sistemas do município monitorados em tempo real com alertas inteligentes.</p>
-        </div>
-        <div class="monitor-container">
-            <div class="monitor-grid">
-                <div class="monitor-panel" id="monitorPanel">
-                    <div class="panel-header">
-                        <div class="panel-title"><span class="live-dot"></span> Servidores Ativos</div>
-                        <span class="panel-badge">● AO VIVO</span>
-                    </div>
-                    <div class="server-list" id="serverList">
-                        <!-- Populated by JS -->
-                    </div>
-                </div>
-                <div class="side-panels">
-                    <div class="mini-card" id="miniCard1">
-                        <div class="panel-header">
-                            <div class="panel-title">📈 Uso de CPU</div>
-                        </div>
-                        <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:4px;">
-                            <span class="stat-number purple" id="cpuValue" style="font-size:36px;">0</span>
-                            <span style="color:var(--text-secondary)">%</span>
-                        </div>
-                        <div class="mini-chart" id="cpuChart"></div>
-                    </div>
-                    <div class="mini-card" id="miniCard2">
-                        <div class="panel-header">
-                            <div class="panel-title">🔔 Atividade Recente</div>
-                        </div>
-                        <div class="activity-feed" id="activityFeed"></div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
 
     <!-- NEWS SECTION -->
-    <section class="section news-section" id="news">
-        <div class="section-header reveal">
-            <div class="section-label">Últimas novidades</div>
-            <h2 class="section-title">Central de<br><span class="gradient-text">Notícias & Updates</span></h2>
-            <p class="section-desc">Fique por dentro das últimas atualizações e conquistas do departamento.</p>
-        </div>
-        <div class="news-grid">
-            <div class="news-card-main">
-                <div class="news-img">
-                    🏗️
-                    <span class="news-img-label tag tag-urgent">Destaque</span>
-                </div>
-                <div class="news-card-body">
-                    <div class="news-date">📅 15 de Janeiro, 2025</div>
-                    <h3 class="news-title">Departamento de TI completa modernização do Data Center Municipal</h3>
-                    <p class="news-excerpt">Toda a infraestrutura municipal passou por um processo de modernização e migração com zero downtime. O resultado: maior segurança dos dados públicos e resposta mais rápida para o cidadão.</p>
-                    <div class="code-block" style="margin-top:24px;">
-                        <span class="code-line"><span class="code-comment">// system-status.config — Maracaju Municipal Core</span></span>
-                        <span class="code-line"><span class="code-keyword">apiVersion</span>: v1</span>
-                        <span class="code-line"><span class="code-keyword">kind</span>: InfrastructureStatus</span>
-                        <span class="code-line"><span class="code-func">metadata</span>:</span>
-                        <span class="code-line">&nbsp;&nbsp;<span class="code-string">municipality</span>: maracaju-ms</span>
-                        <span class="code-line">&nbsp;&nbsp;<span class="code-string">status</span>: <span class="code-number">100% OPERATIONAL</span></span>
-                    </div>
-                </div>
-            </div>
-            <div class="news-card-sm">
-                <div class="news-thumb" style="background:rgba(249, 198, 26, 0.15);">🔐</div>
-                <div>
-                    <div class="news-date">📅 12 de Janeiro, 2025</div>
-                    <h3 class="news-title">Segurança cibernética reforçada nos sistemas da prefeitura</h3>
-                    <p class="news-excerpt">Verificação contínua de segurança e firewall de nova geração ativados em toda a rede.</p>
-                </div>
-            </div>
-            <div class="news-card-sm">
-                <div class="news-thumb" style="background:rgba(44, 194, 124, 0.15);">🤖</div>
-                <div>
-                    <div class="news-date">📅 10 de Janeiro, 2025</div>
-                    <h3 class="news-title">Atendimento digital automatizado agiliza solicitações</h3>
-                    <p class="news-excerpt">Sistema automatizado auxilia na triagem de chamados dos servidores municipais.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<section class="section news-section" id="news">
+    <div class="section-header reveal">
+        <div class="section-label">Últimas novidades</div>
+        <h2 class="section-title">Central de<br><span class="gradient-text">Notícias & Updates</span></h2>
+        <p class="section-desc">Fique por dentro das últimas atualizações e conquistas do departamento.</p>
+    </div>
+    <!-- ID 'mainNewsGrid' adicionado aqui para carregar as notícias dinamicamente -->
+    <div class="news-grid" id="mainNewsGrid">
+        <!-- O JavaScript vai preencher os cards aqui -->
+    </div>
+</section>
 
-    <!-- TEAM SECTION -->
-    <section class="section" id="team">
-        <div class="section-header reveal">
-            <div class="section-label">Quem somos</div>
-            <h2 class="section-title">Nossa<br><span class="gradient-text">Equipe Técnica</span></h2>
-            <p class="section-desc">Servidores e especialistas dedicados à transformação digital do município.</p>
-        </div>
-        <div class="team-grid">
-            <div class="team-card">
-                <div class="team-avatar">
-                    <div class="team-avatar-inner">👨‍💻</div>
-                </div>
-                <h4 class="team-name">Carlos Mendes</h4>
-                <p class="team-role">Coordenador de TI</p>
-                <div class="team-stats">
-                    <div class="team-stat-item">
-                        <div class="team-stat-num">15+</div>
-                        <div class="team-stat-lbl">Anos Exp.</div>
-                    </div>
-                    <div class="team-stat-item">
-                        <div class="team-stat-num">Gestão</div>
-                        <div class="team-stat-lbl">Pública</div>
-                    </div>
-                </div>
-            </div>
-            <div class="team-card">
-                <div class="team-avatar">
-                    <div class="team-avatar-inner">👩‍💻</div>
-                </div>
-                <h4 class="team-name">Ana Lucia Ferreira</h4>
-                <p class="team-role">Segurança da Informação</p>
-                <div class="team-stats">
-                    <div class="team-stat-item">
-                        <div class="team-stat-num">12+</div>
-                        <div class="team-stat-lbl">Anos Exp.</div>
-                    </div>
-                    <div class="team-stat-item">
-                        <div class="team-stat-num">CISSP</div>
-                        <div class="team-stat-lbl">Certificada</div>
-                    </div>
-                </div>
-            </div>
-            <div class="team-card">
-                <div class="team-avatar">
-                    <div class="team-avatar-inner">🧑‍💻</div>
-                </div>
-                <h4 class="team-name">Rafael Torres</h4>
-                <p class="team-role">Administrador de Redes</p>
-                <div class="team-stats">
-                    <div class="team-stat-item">
-                        <div class="team-stat-num">8+</div>
-                        <div class="team-stat-lbl">Anos Exp.</div>
-                    </div>
-                    <div class="team-stat-item">
-                        <div class="team-stat-num">Infra</div>
-                        <div class="team-stat-lbl">Especialista</div>
-                    </div>
-                </div>
-            </div>
-            <div class="team-card">
-                <div class="team-avatar">
-                    <div class="team-avatar-inner">👩‍🔬</div>
-                </div>
-                <h4 class="team-name">Juliana Costa</h4>
-                <p class="team-role">Análise de Dados & Sistemas</p>
-                <div class="team-stats">
-                    <div class="team-stat-item">
-                        <div class="team-stat-num">10+</div>
-                        <div class="team-stat-lbl">Anos Exp.</div>
-                    </div>
-                    <div class="team-stat-item">
-                        <div class="team-stat-num">Sistemas</div>
-                        <div class="team-stat-lbl">Públicos</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- TECH STACK MARQUEE -->
-    <section class="section tech-section" style="padding:60px 0;overflow:hidden;">
-        <div class="section-header reveal" style="margin-bottom:40px;">
-            <div class="section-label">Tecnologias</div>
-            <h2 class="section-title" style="font-size:32px;">Tech Stack</h2>
-        </div>
-        <div class="tech-marquee">
-            <div class="tech-item"><span class="tech-item-icon">☁️</span><span class="tech-item-name">Nuvem Governamental</span></div>
-            <div class="tech-item"><span class="tech-item-icon">🔷</span><span class="tech-item-name">Servidores Linux</span></div>
-            <div class="tech-item"><span class="tech-item-icon">🐳</span><span class="tech-item-name">Containers</span></div>
-            <div class="tech-item"><span class="tech-item-icon">⚡</span><span class="tech-item-name">Segurança da Informação</span></div>
-            <div class="tech-item"><span class="tech-item-icon">🐍</span><span class="tech-item-name">Python</span></div>
-            <div class="tech-item"><span class="tech-item-icon">🟢</span><span class="tech-item-name">Grafana</span></div>
-            <div class="tech-item"><span class="tech-item-icon">🐘</span><span class="tech-item-name">PostgreSQL</span></div>
-            <div class="tech-item"><span class="tech-item-icon">🌐</span><span class="tech-item-name">Fibra Óptica</span></div>
-            <!-- Duplicate -->
-            <div class="tech-item"><span class="tech-item-icon">☁️</span><span class="tech-item-name">Nuvem Governamental</span></div>
-            <div class="tech-item"><span class="tech-item-icon">🔷</span><span class="tech-item-name">Servidores Linux</span></div>
-            <div class="tech-item"><span class="tech-item-icon">🐳</span><span class="tech-item-name">Containers</span></div>
-            <div class="tech-item"><span class="tech-item-icon">⚡</span><span class="tech-item-name">Segurança da Informação</span></div>
-            <div class="tech-item"><span class="tech-item-icon">🐍</span><span class="tech-item-name">Python</span></div>
-            <div class="tech-item"><span class="tech-item-icon">🟢</span><span class="tech-item-name">Grafana</span></div>
-            <div class="tech-item"><span class="tech-item-icon">🐘</span><span class="tech-item-name">PostgreSQL</span></div>
-            <div class="tech-item"><span class="tech-item-icon">🌐</span><span class="tech-item-name">Fibra Óptica</span></div>
-        </div>
-    </section>
-
-    <!-- CTA SECTION -->
-    <section class="cta-section" id="contact">
-        <div class="cta-box reveal">
-            <h2 class="cta-title">Precisando de suporte<br>ou <span class="gradient-text">atendimento de TI</span>?</h2>
-            <p class="cta-desc">Acesse nosso canal de suporte ou entre em contato com nossa equipe técnica.</p>
-            <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
-                <a href="#" class="btn-primary">📧 Abrir Chamado</a>
-                <a href="#" class="btn-secondary">📅 Agendar Atendimento</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER (RODAPÉ) -->
+    <!-- FOOTER -->
     <footer class="footer">
         <div class="footer-grid">
             <div class="footer-brand">
                 <a href="#" class="nav-logo" style="margin-bottom:8px;">
-                    <div class="logo-icon">M</div>
+                    <img src="IMG/Icone.png" alt="Logo TI" class="logo-img">
                     <span class="logo-text">Departamento de TI</span>
                 </a>
                 <p>Inovação, governança e suporte tecnológico para o aperfeiçoamento dos serviços públicos.</p>
             </div>
-            <div class="footer-col">
-                <h4>Serviços</h4>
-                <a href="#">Sistemas Internos</a>
-                <a href="#">Segurança Digital</a>
-                <a href="#">Redes e Telefonia</a>
-                <a href="#">Portal da Transparência</a>
-                <a href="#">Suporte ao Servidor</a>
-            </div>
-            <div class="footer-col">
-                <h4>Recursos</h4>
-                <a href="#">Base de Conhecimento</a>
-                <a href="#">Status dos Serviços</a>
-                <a href="#">Políticas de TI</a>
-                <a href="#">Chamados</a>
-            </div>
-            <div class="footer-col">
-                <h4>Contato</h4>
-                <a href="#">ti@maracaju.ms.gov.br</a>
-                <a href="#">Suporte Interno</a>
-                <a href="#">Atendimento presencial</a>
-            </div>
         </div>
         <div class="footer-bottom">
-            <span>© 2025 Departamento de TI. Todos os direitos reservados.</span>
+            <span>© 2026 Departamento de TI. Todos os direitos reservados.</span>
             <span class="footer-city">Prefeitura de Maracaju</span>
         </div>
     </footer>
