@@ -1,125 +1,155 @@
 // ===== LOADER =====
 window.addEventListener('load', () => {
     setTimeout(() => {
-        document.getElementById('loader').classList.add('hidden');
-    }, 1500);
+        const loader = document.getElementById('loader');
+        if (loader) loader.classList.add('hidden');
+    }, 1200);
 });
 
 // ===== CURSOR GLOW =====
 const cursorGlow = document.getElementById('cursorGlow');
 document.addEventListener('mousemove', (e) => {
-    cursorGlow.style.left = e.clientX + 'px';
-    cursorGlow.style.top = e.clientY + 'px';
+    if (cursorGlow) {
+        cursorGlow.style.left = e.clientX + 'px';
+        cursorGlow.style.top = e.clientY + 'px';
+    }
 });
 
-// ===== PARTICLES CANVAS =====
+// ===== PARTICLES & ATOMS BACKGROUND COM INTERAÇÃO E CLIQUE =====
 const canvas = document.getElementById('particles-canvas');
-const ctx = canvas.getContext('2d');
-let particles = [];
-let mouse = { x: null, y: null };
+if (canvas) {
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let mouse = { x: null, y: null, radius: 160 };
 
-function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-}
-resizeCanvas();
-window.addEventListener('resize', resizeCanvas);
-
-document.addEventListener('mousemove', (e) => {
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
-});
-
-class Particle {
-    constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 2 + 0.5;
-        this.speedX = (Math.random() - 0.5) * 0.5;
-        this.speedY = (Math.random() - 0.5) * 0.5;
-        this.opacity = Math.random() * 0.5 + 0.1;
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
     }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
 
-    update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-
-        if (mouse.x !== null) {
-            const dx = mouse.x - this.x;
-            const dy = mouse.y - this.y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < 150) {
-                this.x -= dx * 0.01;
-                this.y -= dy * 0.01;
-                this.opacity = Math.min(0.8, this.opacity + 0.02);
-            }
-        }
-
-        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
-    }
-
-    draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(249, 198, 26, ${this.opacity})`;
-        ctx.fill();
-    }
-}
-
-function initParticles() {
-    const count = Math.min(120, Math.floor(window.innerWidth / 15));
-    for (let i = 0; i < count; i++) {
-        particles.push(new Particle());
-    }
-}
-initParticles();
-
-function connectParticles() {
-    for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-            const dx = particles[i].x - particles[j].x;
-            const dy = particles[i].y - particles[j].y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < 120) {
-                ctx.beginPath();
-                ctx.strokeStyle = `rgba(44, 194, 124, ${0.1 * (1 - dist / 120)})`;
-                ctx.lineWidth = 0.5;
-                ctx.moveTo(particles[i].x, particles[i].y);
-                ctx.lineTo(particles[j].x, particles[j].y);
-                ctx.stroke();
-            }
-        }
-    }
-}
-
-function animateParticles() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles.forEach(p => {
-        p.update();
-        p.draw();
+    document.addEventListener('mousemove', (e) => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
     });
-    connectParticles();
-    requestAnimationFrame(animateParticles);
-}
-animateParticles();
 
-// ===== NAVBAR SCROLL =====
+    document.addEventListener('mouseleave', () => {
+        mouse.x = null;
+        mouse.y = null;
+    });
+
+    // Efeito de clique no fundo: dispara um burst (explosão suave) de partículas/átomos
+    document.addEventListener('click', (e) => {
+        if (['A', 'BUTTON', 'INPUT', 'TEXTAREA', 'SELECT'].includes(e.target.tagName)) return;
+        
+        for (let i = 0; i < 10; i++) {
+            particles.push(new Particle(e.clientX, e.clientY, true));
+        }
+    });
+
+    class Particle {
+        constructor(startX, startY, isBurst = false) {
+            this.x = startX !== undefined ? startX : Math.random() * canvas.width;
+            this.y = startY !== undefined ? startY : Math.random() * canvas.height;
+            this.size = Math.random() * 2.5 + 1;
+            this.speedX = isBurst ? (Math.random() - 0.5) * 5 : (Math.random() - 0.5) * 0.5;
+            this.speedY = isBurst ? (Math.random() - 0.5) * 5 : (Math.random() - 0.5) * 0.5;
+            this.opacity = Math.random() * 0.6 + 0.2;
+            this.isAtom = Math.random() > 0.65; // Define quais partículas funcionam como "átomos" de TI
+        }
+
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+
+            // Interação fluida com a proximidade do mouse
+            if (mouse.x !== null && mouse.y !== null) {
+                const dx = mouse.x - this.x;
+                const dy = mouse.y - this.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < mouse.radius) {
+                    const force = (mouse.radius - dist) / mouse.radius;
+                    this.x -= (dx / dist) * force * 2.5;
+                    this.y -= (dy / dist) * force * 2.5;
+                }
+            }
+
+            if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+            if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+        }
+
+        draw() {
+            ctx.beginPath();
+            if (this.isAtom) {
+                // Desenha nó de átomo tecnológico com brilho roxo/branco
+                ctx.arc(this.x, this.y, this.size + 1.2, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(157, 78, 221, ${this.opacity})`;
+                ctx.fill();
+                ctx.strokeStyle = `rgba(255, 255, 255, ${this.opacity * 0.7})`;
+                ctx.lineWidth = 0.8;
+                ctx.stroke();
+            } else {
+                // Desenha bolinha padrão limpa
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+                ctx.fill();
+            }
+        }
+    }
+
+    function initParticles() {
+        particles = [];
+        const count = Math.min(100, Math.floor(window.innerWidth / 16));
+        for (let i = 0; i < count; i++) {
+            particles.push(new Particle());
+        }
+    }
+    initParticles();
+
+    function connectParticles() {
+        for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < 120) {
+                    ctx.beginPath();
+                    ctx.strokeStyle = `rgba(157, 78, 221, ${0.15 * (1 - dist / 120)})`;
+                    ctx.lineWidth = 0.5;
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.stroke();
+                }
+            }
+        }
+    }
+
+    function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => {
+            p.update();
+            p.draw();
+        });
+        connectParticles();
+        requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+}
+
+// ===== NAVBAR SCROLL EFFECT =====
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
+    if (navbar) {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
     }
 });
 
 // ===== SCROLL REVEAL =====
-const observerOptions = {
-    threshold: 0.15,
-    rootMargin: '0px 0px -50px 0px'
-};
-
 const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -130,7 +160,7 @@ const revealObserver = new IntersectionObserver((entries) => {
             });
         }
     });
-}, observerOptions);
+}, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
 
 document.querySelectorAll('.reveal, .stat-card, .service-card, .team-card, .news-card-main, .news-card-sm').forEach(el => {
     revealObserver.observe(el);
@@ -156,9 +186,7 @@ function animateCounter(el) {
             el.textContent = Math.floor(current).toLocaleString('pt-BR') + suffix;
         }
 
-        if (progress < 1) {
-            requestAnimationFrame(update);
-        }
+        if (progress < 1) requestAnimationFrame(update);
     }
     requestAnimationFrame(update);
 }
@@ -172,11 +200,9 @@ const counterObserver = new IntersectionObserver((entries) => {
     });
 }, { threshold: 0.5 });
 
-document.querySelectorAll('.counter-wrap').forEach(el => {
-    counterObserver.observe(el);
-});
+document.querySelectorAll('.counter-wrap').forEach(el => counterObserver.observe(el));
 
-// ===== SERVER LIST =====
+// ===== SERVER LIST LIVE MONITOR =====
 const servers = [
     { name: 'srv-pma-web-01', type: 'Portal Principal', status: 'online', uptime: '99.99%', load: 23 },
     { name: 'srv-pma-db-01', type: 'Banco de Dados', status: 'online', uptime: '99.97%', load: 45 },
@@ -214,7 +240,6 @@ function renderServers() {
         `;
     });
 }
-
 renderServers();
 setInterval(renderServers, 3000);
 
@@ -234,7 +259,7 @@ function renderCpuChart() {
         const bar = document.createElement('div');
         bar.className = 'chart-bar';
         bar.style.height = v + '%';
-        bar.style.background = v < 40 ? '#2CC27C' : v < 70 ? '#F9C61A' : '#E74C3C';
+        bar.style.background = v < 40 ? '#3fb950' : v < 70 ? '#f0883e' : '#f85149';
         bar.style.opacity = '0.85';
         chart.appendChild(bar);
     });
@@ -242,96 +267,23 @@ function renderCpuChart() {
     const cpuEl = document.getElementById('cpuValue');
     if (cpuEl) cpuEl.textContent = Math.round(val);
 }
-
 renderCpuChart();
 setInterval(renderCpuChart, 2000);
-
-// ===== ACTIVITY FEED =====
-const activities = [
-    { text: '<strong>srv-pma-core</strong> otimização automatizada', color: '#2CC27C', time: 'agora' },
-    { text: '<strong>Firewall</strong> bloqueou tentativa de acesso indevido', color: '#F9C61A', time: '2 min atrás' },
-    { text: '<strong>Backup</strong> rotina concluída com sucesso', color: '#2CC27C', time: '8 min atrás' },
-    { text: '<strong>Certificado SSL</strong> renovado com sucesso', color: '#3C6F99', time: '15 min atrás' },
-];
-
-function renderActivities() {
-    const feed = document.getElementById('activityFeed');
-    if (!feed) return;
-    feed.innerHTML = '';
-    activities.forEach(a => {
-        feed.innerHTML += `
-            <div class="activity-item">
-                <div class="activity-dot" style="background:${a.color};box-shadow:0 0 6px ${a.color}"></div>
-                <div>
-                    <div class="activity-text">${a.text}</div>
-                    <div class="activity-time">${a.time}</div>
-                </div>
-            </div>
-        `;
-    });
-}
-
-renderActivities();
-
-// ===== MOBILE MENU =====
-const mobileToggle = document.getElementById('mobileToggle');
-if (mobileToggle) {
-    mobileToggle.addEventListener('click', () => {
-        const links = document.querySelector('.nav-links');
-        if (links.style.display === 'flex') {
-            links.style.display = 'none';
-        } else {
-            links.style.display = 'flex';
-            links.style.position = 'fixed';
-            links.style.top = '70px';
-            links.style.left = '0';
-            links.style.right = '0';
-            links.style.flexDirection = 'column';
-            links.style.background = '#102130';
-            links.style.padding = '20px';
-            links.style.gap = '8px';
-            links.style.zIndex = '999';
-        }
-    });
-}
-
-// ===== SMOOTH SCROLL =====
-// ===== SMOOTH SCROLL (Apenas para links internos que usam #) =====
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        const href = this.getAttribute('href');
-        if (href !== '#' && href.startsWith('#')) {
-            const target = document.querySelector(href);
-            if (target) {
-                e.preventDefault();
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        }
-    });
-});
-
-console.log('%c🚀 Prefeitura de Maracaju - Departamento de TI', 'color: #F9C61A; font-size: 16px; font-weight: bold;');
 
 // ===== CARREGAR NOTÍCIAS DO PAINEL ADMIN NO SITE PRINCIPAL =====
 function loadMainPageNews() {
     const newsGrid = document.getElementById('mainNewsGrid');
     if (!newsGrid) return;
 
-    // Busca as notícias salvas pelo Admin no LocalStorage
     const savedNews = localStorage.getItem('maracaju_ti_news');
-    
-    // Se não houver notícias cadastradas, não faz nada
     if (!savedNews) return;
 
     const newsList = JSON.parse(savedNews);
     if (newsList.length === 0) return;
 
-    // Limpa a grid antes de renderizar
     newsGrid.innerHTML = '';
 
-    // Renderiza cada notícia cadastrada no Admin
     newsList.forEach((news, index) => {
-        // Se for a primeira notícia, faz o card grande (Destaque)
         if (index === 0) {
             const mainCard = document.createElement('div');
             mainCard.className = 'news-card-main visible';
@@ -347,22 +299,21 @@ function loadMainPageNews() {
                     ${news.audio ? `<div style="margin-top:16px;"><audio controls src="${news.audio}" style="width:100%;height:36px;"></audio></div>` : ''}
                     ${news.code ? `
                         <div class="code-block" style="margin-top:24px;">
-                            <pre style="margin:0;white-space:pre-wrap;color:var(--verde);">${news.code}</pre>
+                            <pre style="margin:0;white-space:pre-wrap;color:var(--purple-accent);">${news.code}</pre>
                         </div>
                     ` : ''}
                 </div>
             `;
             newsGrid.appendChild(mainCard);
         } else {
-            // Demais notícias ficam em cards menores
             const smCard = document.createElement('div');
             smCard.className = 'news-card-sm visible';
             smCard.innerHTML = `
-                <div class="news-thumb" style="background:rgba(249, 198, 26, 0.15);">
-                    ${news.image ? `<img src="${news.image}" style="width:100%;height:100%;object-fit:cover;border-radius:12px;">` : (news.icon || '📰')}
+                <div class="news-thumb" style="background:rgba(157, 78, 221, 0.15);">
+                    ${news.image ? `<img src="${news.image}" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">` : (news.icon || '📰')}
                 </div>
                 <div style="flex:1;">
-                    <div class="news-date">📅 ${news.date} — <span style="color:var(--verde);">${news.category}</span></div>
+                    <div class="news-date">📅 ${news.date} — <span style="color:var(--purple-accent);">${news.category}</span></div>
                     <h3 class="news-title">${news.title}</h3>
                     <p class="news-excerpt">${news.excerpt}</p>
                     ${news.audio ? `<div style="margin-top:10px;"><audio controls src="${news.audio}" style="width:100%;height:32px;"></audio></div>` : ''}
@@ -373,5 +324,4 @@ function loadMainPageNews() {
     });
 }
 
-// Executa a função assim que a página carregar
 document.addEventListener('DOMContentLoaded', loadMainPageNews);

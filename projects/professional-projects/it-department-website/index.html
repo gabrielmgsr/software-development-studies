@@ -167,29 +167,176 @@
     </section>
 
     <!-- NEWS SECTION -->
-<section class="section news-section" id="news">
+    <section class="section news-section" id="news">
+        <div class="section-header reveal">
+            <div class="section-label">Últimas novidades</div>
+            <h2 class="section-title">Central de<br><span class="gradient-text">Notícias & Updates</span></h2>
+            <p class="section-desc">Fique por dentro das últimas atualizações e conquistas do departamento.</p>
+        </div>
+        <div class="news-grid" id="mainNewsGrid">
+            <!-- O JavaScript vai preencher os cards aqui -->
+        </div>
+    </section>
+<!-- EQUIPE EM FORMATO DE ÁTOMO 3D INTERATIVO (4 TRAJETÓRIAS) -->
+<section class="section team-atom-3d-section" id="team">
     <div class="section-header reveal">
-        <div class="section-label">Últimas novidades</div>
-        <h2 class="section-title">Central de<br><span class="gradient-text">Notícias & Updates</span></h2>
-        <p class="section-desc">Fique por dentro das últimas atualizações e conquistas do departamento.</p>
+        <div class="section-label">Estrutura Atômica da TI</div>
+        <h2 class="section-title">Nossa Equipe em<br><span class="gradient-text">4 Trajetórias Espectrais</span></h2>
+        <p class="section-desc">Passe o mouse sobre qualquer colaborador para fixar a órbita e ver os detalhes.</p>
     </div>
-    <!-- ID 'mainNewsGrid' adicionado aqui para carregar as notícias dinamicamente -->
-    <div class="news-grid" id="mainNewsGrid">
-        <!-- O JavaScript vai preencher os cards aqui -->
+
+    <!-- CONTÊINER DO SISTEMA ATÔMICO -->
+    <div class="atom-universe" id="atomicSystem">
+        <svg class="orbits-svg" id="orbitsSvg"></svg>
+
+        <!-- NÚCLEO CENTRAL DO ÁTOMO -->
+        <div class="nucleus">
+            CORE TI
+            <span class="nucleus-sub">12 MEMBROS</span>
+        </div>
     </div>
 </section>
 
+<!-- SCRIPT DE ÓRBITAS DINÂMICAS -->
+<script>
+    const baseOrbits = [
+      { rxFactor: 0.32, ryFactor: 0.12, tilt: -20, speed: 0.0007 },
+      { rxFactor: 0.38, ryFactor: 0.14, tilt: 30,  speed: -0.0005 },
+      { rxFactor: 0.44, ryFactor: 0.16, tilt: 75,  speed: 0.0006 },
+      { rxFactor: 0.50, ryFactor: 0.18, tilt: -60, speed: -0.0004 }
+    ];
+
+    const contacts = [
+      { orbitIndex: 0, phase: 0,           name: 'Colaborador 01', role: 'Front-End',   time: '⏳ 3 anos' },
+      { orbitIndex: 0, phase: (2*Math.PI)/3, name: 'Colaborador 02', role: 'Suporte N2',  time: '⏳ 5 anos' },
+      { orbitIndex: 0, phase: (4*Math.PI)/3, name: 'Colaborador 03', role: 'Redes',       time: '⏳ 2 anos' },
+      
+      { orbitIndex: 1, phase: 0.5,         name: 'Colaborador 04', role: 'DBA / Dados', time: '⏳ 4 anos' },
+      { orbitIndex: 1, phase: 0.5+(2*Math.PI)/3, name: 'Colaborador 05', role: 'Segurança',   time: '⏳ 1 ano' },
+      { orbitIndex: 1, phase: 0.5+(4*Math.PI)/3, name: 'Colaborador 06', role: 'Sistemas',    time: '⏳ 6 anos' },
+      
+      { orbitIndex: 2, phase: 1.2,         name: 'Colaborador 07', role: 'Suporte N1',  time: '⏳ 2 anos' },
+      { orbitIndex: 2, phase: 1.2+(2*Math.PI)/3, name: 'Colaborador 08', role: 'Projetos',    time: '⏳ 7 anos' },
+      { orbitIndex: 2, phase: 1.2+(4*Math.PI)/3, name: 'Colaborador 09', role: 'DevOps & Cloud', time: '⏳ 3 anos' },
+      
+      { orbitIndex: 3, phase: 2.0,         name: 'Colaborador 10', role: 'Hardware',    time: '⏳ 4 anos' },
+      { orbitIndex: 3, phase: 2.0+(2*Math.PI)/3, name: 'Colaborador 11', role: 'Atendimento', time: '⏳ 2 anos' },
+      { orbitIndex: 3, phase: 2.0+(4*Math.PI)/3, name: 'Colaborador 12', role: 'Coordenador', time: '⏳ 10 anos' }
+    ];
+
+    const container = document.getElementById('atomicSystem');
+    const svg = document.getElementById('orbitsSvg');
+
+    let currentWidth = container.clientWidth;
+    let currentHeight = container.clientHeight;
+    let centerX = currentWidth / 2;
+    let centerY = currentHeight / 2;
+    let currentOrbits = [];
+    let ellipseElements = [];
+
+    function updateDimensions() {
+      currentWidth = container.clientWidth;
+      currentHeight = container.clientHeight;
+      centerX = currentWidth / 2;
+      centerY = currentHeight / 2;
+
+      const minDimension = Math.min(currentWidth, currentHeight);
+      svg.setAttribute('viewBox', `0 0 ${currentWidth} ${currentHeight}`);
+
+      currentOrbits = baseOrbits.map((orbit, index) => {
+        const rx = minDimension * orbit.rxFactor;
+        const ry = minDimension * orbit.ryFactor;
+
+        if (ellipseElements[index]) {
+          ellipseElements[index].setAttribute('cx', centerX);
+          ellipseElements[index].setAttribute('cy', centerY);
+          ellipseElements[index].setAttribute('rx', rx);
+          ellipseElements[index].setAttribute('ry', ry);
+          ellipseElements[index].setAttribute('transform', `rotate(${orbit.tilt}, ${centerX}, ${centerY})`);
+        }
+        return { ...orbit, rx, ry };
+      });
+    }
+
+    baseOrbits.forEach(() => {
+      const ellipse = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse');
+      ellipse.setAttribute('class', 'orbit-line');
+      svg.appendChild(ellipse);
+      ellipseElements.push(ellipse);
+    });
+
+    const cardElements = contacts.map((contact) => {
+      const card = document.createElement('div');
+      card.className = 'contact-card';
+      card.innerHTML = `
+        <img src="IMG/Icone.png" alt="Foto" class="avatar">
+        <div class="contact-info">
+          <div class="contact-name">${contact.name}</div>
+          <div class="contact-role">${contact.role}</div>
+          <span class="contact-time">${contact.time}</span>
+        </div>
+      `;
+      
+      let isHovered = false;
+      card.addEventListener('mouseenter', () => isHovered = true);
+      card.addEventListener('mouseleave', () => isHovered = false);
+
+      container.appendChild(card);
+      return { element: card, contact, isHovered: () => isHovered };
+    });
+
+    const resizeObserver = new ResizeObserver(() => {
+      updateDimensions();
+    });
+    resizeObserver.observe(container);
+
+    let startTime = performance.now();
+
+    function animate(currentTime) {
+      const elapsed = currentTime - startTime;
+
+      cardElements.forEach((item) => {
+        const { contact, element, isHovered } = item;
+        const orbit = currentOrbits[contact.orbitIndex];
+
+        if (!orbit) return;
+
+        if (!isHovered()) {
+          contact.currentAngle = contact.phase + elapsed * orbit.speed;
+        }
+
+        const angle = contact.currentAngle || contact.phase;
+        const unrotatedX = orbit.rx * Math.cos(angle);
+        const unrotatedY = orbit.ry * Math.sin(angle);
+
+        const radTilt = (orbit.tilt * Math.PI) / 180;
+        const projX = unrotatedX * Math.cos(radTilt) - unrotatedY * Math.sin(radTilt);
+        const projY = unrotatedX * Math.sin(radTilt) + unrotatedY * Math.cos(radTilt);
+
+        const screenX = centerX + projX;
+        const screenY = centerY + projY;
+        const zIndex = Math.round(unrotatedY + 100);
+
+        element.style.left = `${screenX}px`;
+        element.style.top = `${screenY}px`;
+        
+        if (!isHovered()) {
+          element.style.zIndex = zIndex > 0 ? 60 + zIndex : 20 + zIndex;
+          const depthScale = 0.85 + ((unrotatedY + orbit.ry) / (2 * orbit.ry)) * 0.25; 
+          element.style.transform = `translate(-50%, -50%) scale(${depthScale})`;
+        } else {
+          element.style.transform = `translate(-50%, -50%) scale(1.12)`;
+        }
+      });
+
+      requestAnimationFrame(animate);
+    }
+
+    updateDimensions();
+    requestAnimationFrame(animate);
+</script>
     <!-- FOOTER -->
     <footer class="footer">
-        <div class="footer-grid">
-            <div class="footer-brand">
-                <a href="#" class="nav-logo" style="margin-bottom:8px;">
-                    <img src="IMG/Icone.png" alt="Logo TI" class="logo-img">
-                    <span class="logo-text">Departamento de TI</span>
-                </a>
-                <p>Inovação, governança e suporte tecnológico para o aperfeiçoamento dos serviços públicos.</p>
-            </div>
-        </div>
         <div class="footer-bottom">
             <span>© 2026 Departamento de TI. Todos os direitos reservados.</span>
             <span class="footer-city">Prefeitura de Maracaju</span>
