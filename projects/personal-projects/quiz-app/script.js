@@ -10,6 +10,7 @@ const answersEl = document.getElementById('answers')
 const btnNext = document.getElementById('btn')
 const scoreEl = document.getElementById('score')
 const currentEl = document.getElementById('current')
+const background = document.querySelector('.background')
 
 
 function mostrarPergunta() {
@@ -54,6 +55,28 @@ btnNext.addEventListener('click', () =>{
     })
 mostrarPergunta();
 
+function criarLogo() {
+    const logo = document.createElement("img");
+
+    logo.src = "./img/konoha.png";
+    logo.classList.add("konoha");
+
+    // posição aleatória na altura
+    logo.style.top = Math.random() * 90 + "%";
+
+    // tamanho aleatório
+    logo.style.width = (60 + Math.random() * 40) + "px";
+
+    background.appendChild(logo);
+
+    // remove quando terminar a animação
+    logo.addEventListener("animationend", () => {
+        logo.remove();
+    });
+}
+
+setInterval(criarLogo, 2000);
+
 /* 
                                     Próximas implementações
 
@@ -62,3 +85,4 @@ mostrarPergunta();
 3 - Alterar a cor do cabelo do personagem no container de pontuação de acordo com a pontuação.
 4 - Adicionar efeitos visuais ao acertar e ao errar uma resposta.
 */
+console.log(background);
