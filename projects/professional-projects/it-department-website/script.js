@@ -324,4 +324,30 @@ function loadMainPageNews() {
     });
 }
 
-document.addEventListener('DOMContentLoaded', loadMainPageNews);
+async function fetchGlpiMetrics() {
+    try {
+        // Altere para o caminho correto onde salvou o arquivo PHP no seu servidor
+        console.log("Buscando dados GLPI...");
+        const response = await fetch('./api-glpi.php');
+
+        console.log("Status da resposta: ", response.status);
+        
+        if (!response.ok) throw new Error('Erro ao buscar dados do servidor');
+        
+        const metrics = await response.json();
+        console.log("Dados recebidos da API: ", metrics);
+
+        document.getElementById('glpiOpenToday').textContent = metrics.openToday;
+        document.getElementById('glpiOpenTotal').textContent = metrics.openTotal;
+        document.getElementById('glpiClosedTotal').textContent = metrics.closedTotal;
+
+    } catch (error) {
+        console.error('Erro ao atualizar painel:', error);
+        document.getElementById('glpiOpenToday').textContent = '—';
+        document.getElementById('glpiOpenTotal').textContent = '—';
+        document.getElementById('glpiClosedTotal').textContent = '—';
+    }
+}
+
+fetchGlpiMetrics();
+setInterval(fetchGlpiMetrics, 10000);
