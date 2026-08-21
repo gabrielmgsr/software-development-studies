@@ -4,8 +4,11 @@
     box-sizing: border-box;
 }
 
-body{
+html, body{
     display: flex;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
     font-family: arial, sans-serif;
 }
 
@@ -32,7 +35,7 @@ body{
 
 .sidebar{
     /* position: fixed; */
-    width: 250px;
+    width: 200px;
     height: 100vh;
 
     background-color: #111;
