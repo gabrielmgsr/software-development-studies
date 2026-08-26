@@ -4,8 +4,11 @@
     box-sizing: border-box;
 }
 
-body{
+html, body{
     display: flex;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
     font-family: arial, sans-serif;
 }
 
@@ -32,7 +35,7 @@ body{
 
 .sidebar{
     /* position: fixed; */
-    width: 250px;
+    width: 200px;
     height: 100vh;
 
     background-color: #111;
@@ -76,14 +79,21 @@ body{
     transition: 0.3s;
 }
 
-.header {
+header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.grupo-direita {
+    display: flex;
+    gap: 10px;
 }
 
 .cards {
     display: flex;
-    gap: 20px;
+    gap: 30px;
     margin-top: 30px;
 }
 

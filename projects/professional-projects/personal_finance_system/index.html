@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema Financeiro Pessoal</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <button class="menu-button">
@@ -41,12 +42,17 @@
      <main class="conteudo">
 
         <!-- Cabeçalho -->
-        <header>
-            <h1>Visão Geral Financeira</h1>
+         <div class="header">
+            <header>
+                <h1>Visão Geral Financeira</h1>
 
-            <button>Nova Transações</button>
+                <div class="grupo-direita">
+                    <input type="month" name="" id="">
+                    <button>+ Nova Transações</button>
+                </div>
         </header>
-       
+         </div>
+  
         <!-- Cards -->
          <section class="cards">
             <div class="card">
@@ -67,6 +73,28 @@
             </div>
          </section>
      </main>
+
+     <div id="area-do-dashboard">
+        <div class="dashboard-grid">
+            <!-- CARD 1: EVOLUÇÃO DO SALDO (Gráfico de linha) -->
+            <div class="card-dashboard">
+                <h2 class="card-title">Evolução do Saldo</h2>
+                <div style="height: 260px; position: relative;">
+                    <canvas id="lineChart"></canvas>
+                </div>
+            </div>
+
+            <!-- CARD 2: GASTOS POR CATEGORIA (Gráfico de Rosca + Legenda) -->
+            <div class="card-dashboard">
+                <h2 class="card-title">Gastos por Categorias</h2>
+                <div class="donut-container">
+                    <div class="chart-wrapper">
+                        <canvas id="donutChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+     </div>
 
     <script src="script.js"></script>
 </body>
