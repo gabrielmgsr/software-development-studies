@@ -122,7 +122,7 @@ header {
 
 .dashboard-grid {
     display: grid;
-    grid-template-columns: 1fr; /* O gráfico de linha ocupa o dobro do espaço do de rosca, ajustável */
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
     width: 100%;
 }
