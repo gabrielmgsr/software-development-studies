@@ -1,0 +1,28 @@
+.meu-cabecalho {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    padding: 15px 0;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+
+.nomes-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nome{
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.coracao{
+    font-size: 1.2rem;
+}
