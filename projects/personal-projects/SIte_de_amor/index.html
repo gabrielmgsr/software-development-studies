@@ -5,16 +5,90 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Amanda & Marcos</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <header class="meu-cabecalho">
+    <header class="hero">
         <div class="nomes-container">
             <span class="nome">Amanda</span>
             <span class="coracao">❤️</span>
             <span class="nome">Marcos Gabriel</span>
+            <span class="subtitle">Cada segundo ao seu lado é especial</span>
         </div>
     </header>
+
+    <!-- Seção do Contador -->
+     <section class="counter-section">
+        <h2>Estamos juntos há:</h2>
+        <div id="counter" class="counter-grid">
+            <!-- anos -->
+            <div class="time-box">
+                <span id="years">0</span>
+                <p>Anos</p>
+            </div>
+            <!-- meses -->
+             <div class="time-box">
+                <span id="months">0</span>
+                <p>Meses</p>
+             </div>
+             <!-- Dias -->
+              <div class="time-box">
+                <span id="days">0</span>
+                <p>Dias</p>
+              </div>
+              <!-- Horas -->
+               <div class="time-box">
+                <span id="hours">0</span>
+                <p>Horas</p>
+               </div>
+               <!-- minutos -->
+                <div class="time-box">
+                    <span id="minutes">0</span>
+                    <p>Minutos</p>
+                </div>
+                <!-- Segundos -->
+                <div class="time-box">
+                    <span id="seconds">0</span>
+                    <p>Segundos</p>
+                </div>
+        </div>
+     </section>
+
+     <!-- Painel de envio -->
+      <section class="admin-section">
+        <h2>Adicionar Novo Momento</h2>
+        <form action="" id="photo-form">
+            <div class="input-group">
+                <label for="photo-file">Escolher Foto:</label>
+                <input type="file" id="photo-file" accept="image/*" required>
+            </div>
+            <div class="input-group">
+                <label for="photo-date">Data:</label>
+                <input type="date" id="photo-date" required>
+            </div>
+            <div class="input-group">
+                <label for="photo-desc">Descrição:</label>
+                <input type="text" id="photo-desc" placeholder="Ex: Nosso passeio...">
+            </div>
+            <button type="submit" class="btn-add">Enviar para o Site</button>
+        </form>
+      </section>
+
+     <!-- Seção da Galeria de fotos -->
+     <section class="gallery-section">
+        <div id="gallery-grid" class="gallery-grid">
+            <!-- Carregando fotos... -->
+        </div>
+     </section>
+
+     <footer>
+        <p>Feito com todo meu amor para você ❤️</p>
+     </footer>
+
+     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
     
 
     <script src="script.js"></script>

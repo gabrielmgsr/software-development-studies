@@ -1,4 +1,4 @@
-.meu-cabecalho {
+/* .meu-cabecalho {
     position: fixed;
     top: 0;
     left: 0;
@@ -25,4 +25,40 @@
 
 .coracao{
     font-size: 1.2rem;
+} */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #121214;
+    color: #e1e1e6;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+.hero{
+    padding: 50px 20px 20px;
+}
+
+.hero h1{
+    font-family: 'Great Vibes', curvise;
+    font-size: 3.5rem;
+    color: #ff6b81;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: #a8a8b3;
+}
+
+.counter-section, .admin-section{
+    padding: 30px;
+    background: #1a1a1e;
+    margin: ;
 }
