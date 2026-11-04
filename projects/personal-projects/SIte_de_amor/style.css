@@ -60,5 +60,42 @@ body{
 .counter-section, .admin-section{
     padding: 30px;
     background: #1a1a1e;
-    margin: ;
+    margin: 25px auto;
+    max-width: 700px;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    border: 1px solid #323238;
+}
+
+.counter-section h2, .admin-section h2{
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    color: #ff6b81;
+}
+
+.counter-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    gap: 12px;
+}
+
+.time-box {
+    background: #25252b;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #323238;
+}
+
+.time-box span{
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #fff;
+    display: block;
+}
+
+.time-box p {
+    font-size: 0.75rem;
+    color: #a8a8b3;
+    margin-top: 4px;
+    text-transform: uppercase;
 }
