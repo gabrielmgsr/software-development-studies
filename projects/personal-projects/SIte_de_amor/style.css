@@ -99,3 +99,52 @@ body{
     margin-top: 4px;
     text-transform: uppercase;
 }
+
+#photo-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    text-align: left;
+}
+
+.input-group{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.input label {
+    font-size: 0.9rem;
+    color: #c4c4cc;
+}
+
+.input-group input {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #323238;
+    background: #25252b;
+    color: #fff;
+    font: 0.95rem
+}
+
+.btn-add {
+    background-color: #ff6b81;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+    text-align: center;
+}
+
+.btn-add:hover {
+    background: #ff4757;
+}
+
+/* Galeria */
+.gallery-section {
+    padding: 20px 20px 50px;
+    max-width: '';
+}
