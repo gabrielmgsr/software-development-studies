@@ -1,39 +1,10 @@
-/* .meu-cabecalho {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: #ffffff;
-    padding: 15px 0;
-    display: flex;
-    justify-content: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    z-index: 1000;
-}
-
-.nomes-container {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.nome{
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #333;
-}
-
-.coracao{
-    font-size: 1.2rem;
-} */
-
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body{
+body {
     background-color: #121214;
     color: #e1e1e6;
     font-family: 'Poppins', sans-serif;
@@ -41,12 +12,12 @@ body{
     overflow-x: hidden;
 }
 
-.hero{
+.hero {
     padding: 50px 20px 20px;
 }
 
-.hero h1{
-    font-family: 'Great Vibes', curvise;
+.hero h1 {
+    font-family: 'Great Vibes', cursive;
     font-size: 3.5rem;
     color: #ff6b81;
     margin-bottom: 10px;
@@ -57,7 +28,7 @@ body{
     color: #a8a8b3;
 }
 
-.counter-section, .admin-section{
+.counter-section, .admin-section {
     padding: 30px;
     background: #1a1a1e;
     margin: 25px auto;
@@ -67,7 +38,7 @@ body{
     border: 1px solid #323238;
 }
 
-.counter-section h2, .admin-section h2{
+.counter-section h2, .admin-section h2 {
     font-size: 1.4rem;
     margin-bottom: 20px;
     color: #ff6b81;
@@ -77,7 +48,7 @@ body{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
     gap: 12px;
-}   
+}
 
 .time-box {
     background: #25252b;
@@ -86,7 +57,7 @@ body{
     border: 1px solid #323238;
 }
 
-.time-box span{
+.time-box span {
     font-size: 1.6rem;
     font-weight: 600;
     color: #fff;
@@ -100,29 +71,21 @@ body{
     text-transform: uppercase;
 }
 
-<<<<<<< HEAD
-/* Formulario */
-#photo-form{
-=======
+/* Formulário */
 #photo-form {
->>>>>>> 83f652c5551b0bdbeea99149c870ebf5a4923b45
     display: flex;
     flex-direction: column;
     gap: 15px;
     text-align: left;
 }
 
-.input-group{
+.input-group {
     display: flex;
     flex-direction: column;
     gap: 5px;
 }
 
-<<<<<<< HEAD
 .input-group label {
-=======
-.input label {
->>>>>>> 83f652c5551b0bdbeea99149c870ebf5a4923b45
     font-size: 0.9rem;
     color: #c4c4cc;
 }
@@ -133,35 +96,17 @@ body{
     border: 1px solid #323238;
     background: #25252b;
     color: #fff;
-<<<<<<< HEAD
     font-size: 0.95rem;
 }
 
 .btn-add {
-    
-=======
-    font: 0.95rem
-}
-
-.btn-add {
-    background-color: #ff6b81;
+    background: #ff6b81;
     color: white;
     border: none;
     padding: 12px;
-    border-radius: 12px;
+    border-radius: 8px;
     font-weight: 600;
     cursor: pointer;
     transition: background 0.3s;
     text-align: center;
-}
-
-.btn-add:hover {
-    background: #ff4757;
-}
-
-/* Galeria */
-.gallery-section {
-    padding: 20px 20px 50px;
-    max-width: '';
->>>>>>> 83f652c5551b0bdbeea99149c870ebf5a4923b45
 }
