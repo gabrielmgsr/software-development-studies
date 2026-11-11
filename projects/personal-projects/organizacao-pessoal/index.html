@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LifeOS - Hábitos & Finanças</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#0f172a',
+                        cardBg: '#1e293b',
+                        cardBorder: '#334155',
+                        accentGreen: '#22c55e',
+                        accentGreenHover: '#16a34a'
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Font Awesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-darkBg text-slate-100 min-h-screen flex flex-col justify-between selection:bg-accentGreen selection:text-slate-900">
+
+    <!-- Header / Navbar -->
+    <header class="border-b border-cardBorder bg-cardBg/50 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto px-4 py-3 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 to-green-400 flex items-center justify-center text-slate-950 font-bold text-xl shadow-lg shadow-emerald-500/20">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg tracking-tight">LifeOS <span class="text-xs px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">MVP</span></h1>
+                    <p class="text-xs text-slate-400">Controle total de hábitos e finanças</p>
+                </div>
+            </div>
+
+            <!-- Navegação por Abas -->
+            <nav class="flex bg-slate-900/80 p-1 rounded-xl border border-cardBorder">
+                <button onclick="switchTab('habits')" id="btn-habits" class="px-4 py-1.5 rounded-lg text-sm font-medium transition-all flex items-center gap-2 bg-emerald-500 text-slate-950 shadow">
+                    <i class="fa-solid fa-fire"></i> Hábitos
+                </button>
+                <button onclick="switchTab('finance')" id="btn-finance" class="px-4 py-1.5 rounded-lg text-sm font-medium transition-all flex items-center gap-2 text-slate-400 hover:text-slate-200">
+                    <i class="fa-solid fa-wallet"></i> Finanças
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-5xl mx-auto px-4 py-6 w-full flex-grow">
+
+        <!-- ABA DE HÁBITOS -->
+        <section id="tab-habits" class="space-y-6">
+            <!-- Cabeçalho e Botão Novo Hábito -->
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-cardBg border border-cardBorder p-5 rounded-2xl shadow-xl">
+                <div>
+                    <h2 class="text-xl font-bold flex items-center gap-2">
+                        <span>Rastreio de Hábitos</span>
+                    </h2>
+                    <p class="text-sm text-slate-400">Mantenha a consistência e construa a versão ideal de você mesmo.</p>
+                </div>
+                <button onclick="openModal('habit-modal')" class="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-semibold px-5 py-2.5 rounded-xl transition-all shadow-lg shadow-emerald-500/20 flex items-center justify-center gap-2 cursor-pointer">
+                    <i class="fa-solid fa-plus"></i> Novo Hábito
+                </button>
+            </div>
+
+            <!-- Heatmap Geral (Estilo GitHub) -->
+            <div class="bg-cardBg border border-cardBorder p-5 rounded-2xl shadow-xl space-y-4">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-sm font-semibold text-slate-300 uppercase tracking-wider flex items-center gap-2">
+                        <i class="fa-solid fa-chart-line text-emerald-400"></i> Consistência Geral (Últimos 90 dias)
+                    </h3>
+                    <span id="total-completions-badge" class="text-xs bg-slate-800 text-slate-300 px-2.5 py-1 rounded-lg border border-slate-700">0 conclusões no período</span>
+                </div>
+                <div class="overflow-x-auto pb-2">
+                    <div id="github-heatmap" class="min-w-[650px] flex flex-col gap-1.5">
+                        <!-- Gerado dinamicamente via JS -->
+                    </div>
+                </div>
+                <div class="flex items-center justify-end gap-2 text-xs text-slate-400 pt-2 border-t border-slate-800">
+                    <span>Menos</span>
+                    <div class="w-3 h-3 rounded bg-slate-800 border border-slate-700"></div>
+                    <div class="w-3 h-3 rounded bg-emerald-950 border border-emerald-900/40"></div>
+                    <div class="w-3 h-3 rounded bg-emerald-700"></div>
+                    <div class="w-3 h-3 rounded bg-emerald-500"></div>
+                    <span>Mais</span>
+                </div>
+            </div>
+
+            <!-- Lista de Hábitos Ativos -->
+            <div class="space-y-4">
+                <h3 class="text-sm font-semibold text-slate-400 uppercase tracking-wider">Hábitos de Hoje</h3>
+                <div id="habits-list" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Gerado via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ABA DE FINANÇAS -->
+        <section id="tab-finance" class="hidden space-y-6">
+            <!-- Cards de Resumo Financeiro -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div class="bg-cardBg border border-cardBorder p-5 rounded-2xl shadow-xl flex items-center justify-between">
+                    <div>
+                        <p class="text-xs font-medium text-slate-400 uppercase">Saldo Atual</p>
+                        <h3 id="fin-total" class="text-2xl font-bold mt-1">R$ 0,00</h3>
+                    </div>
+                    <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-xl border border-blue-500/20">
+                        <i class="fa-solid fa-wallet"></i>
+                    </div>
+                </div>
+                <div class="bg-cardBg border border-cardBorder p-5 rounded-2xl shadow-xl flex items-center justify-between">
+                    <div>
+                        <p class="text-xs font-medium text-slate-400 uppercase">Total Receitas</p>
+                        <h3 id="fin-income" class="text-2xl font-bold text-emerald-400 mt-1">R$ 0,00</h3>
+                    </div>
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl border border-emerald-500/20">
+                        <i class="fa-solid fa-arrow-trend-up"></i>
+                    </div>
+                </div>
+                <div class="bg-cardBg border border-cardBorder p-5 rounded-2xl shadow-xl flex items-center justify-between">
+                    <div>
+                        <p class="text-xs font-medium text-slate-400 uppercase">Total Despesas</p>
+                        <h3 id="fin-expense" class="text-2xl font-bold text-rose-400 mt-1">R$ 0,00</h3>
+                    </div>
+                    <div class="w-12 h-12 rounded-xl bg-rose-500/10 text-rose-400 flex items-center justify-center text-xl border border-rose-500/20">
+                        <i class="fa-solid fa-arrow-trend-down"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ações e Lançamento -->
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-cardBg border border-cardBorder p-5 rounded-2xl shadow-xl">
+                <div>
+                    <h2 class="text-xl font-bold">Controle Financeiro</h2>
+                    <p class="text-sm text-slate-400">Acompanhe suas entradas e saídas mensais.</p>
+                </div>
+                <button onclick="openModal('finance-modal')" class="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-semibold px-5 py-2.5 rounded-xl transition-all shadow-lg shadow-emerald-500/20 flex items-center justify-center gap-2 cursor-pointer">
+                    <i class="fa-solid fa-plus"></i> Nova Transação
+                </button>
+            </div>
+
+            <!-- Lista de Transações -->
+            <div class="bg-cardBg border border-cardBorder p-5 rounded-2xl shadow-xl space-y-4">
+                <h3 class="text-sm font-semibold text-slate-400 uppercase tracking-wider">Histórico de Transações</h3>
+                <div id="transactions-list" class="divide-y divide-slate-800">
+                    <!-- Gerado via JS -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modal Novo Hábito -->
+    <div id="habit-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-cardBg border border-cardBorder rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-5">
+            <div class="flex items-center justify-between">
+                <h3 class="text-lg font-bold">Criar Novo Hábito</h3>
+                <button onclick="closeModal('habit-modal')" class="text-slate-400 hover:text-slate-200"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <form id="habit-form" onsubmit="addHabit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-medium text-slate-400 uppercase mb-1">Nome do Hábito</label>
+                    <input type="text" id="habit-name" required placeholder="Ex: Estudar programação 1h" class="w-full bg-slate-900 border border-cardBorder rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-emerald-500 text-slate-100">
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-slate-400 uppercase mb-1">Categoria / Ícone</label>
+                    <select id="habit-icon" class="w-full bg-slate-900 border border-cardBorder rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-emerald-500 text-slate-100">
+                        <option value="fa-book">📚 Leitura / Estudo</option>
+                        <option value="fa-dumbbell">💪 Exercício / Academia</option>
+                        <option value="fa-code">💻 Programação</option>
+                        <option value="fa-glass-water">💧 Beber Água</option>
+                        <option value="fa-brain">🧘 Meditação / Foco</option>
+                        <option value="fa-star">⭐ Outros</option>
+                    </select>
+                </div>
+                <div class="flex justify-end gap-3 pt-2">
+                    <button type="button" onclick="closeModal('habit-modal')" class="px-4 py-2 rounded-xl text-sm font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all">Cancelar</button>
+                    <button type="submit" class="px-5 py-2 rounded-xl text-sm font-medium bg-emerald-500 text-slate-950 hover:bg-emerald-600 font-semibold transition-all shadow">Salvar Hábito</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Nova Transação -->
+    <div id="finance-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-cardBg border border-cardBorder rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-5">
+            <div class="flex items-center justify-between">
+                <h3 class="text-lg font-bold">Nova Transação</h3>
+                <button onclick="closeModal('finance-modal')" class="text-slate-400 hover:text-slate-200"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <form id="finance-form" onsubmit="addTransaction(event)" class="space-y-4">
+                <div class="flex gap-

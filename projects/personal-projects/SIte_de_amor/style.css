@@ -100,8 +100,12 @@ body{
     text-transform: uppercase;
 }
 
+<<<<<<< HEAD
 /* Formulario */
 #photo-form{
+=======
+#photo-form {
+>>>>>>> 83f652c5551b0bdbeea99149c870ebf5a4923b45
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -114,7 +118,11 @@ body{
     gap: 5px;
 }
 
+<<<<<<< HEAD
 .input-group label {
+=======
+.input label {
+>>>>>>> 83f652c5551b0bdbeea99149c870ebf5a4923b45
     font-size: 0.9rem;
     color: #c4c4cc;
 }
@@ -125,9 +133,35 @@ body{
     border: 1px solid #323238;
     background: #25252b;
     color: #fff;
+<<<<<<< HEAD
     font-size: 0.95rem;
 }
 
 .btn-add {
     
+=======
+    font: 0.95rem
+}
+
+.btn-add {
+    background-color: #ff6b81;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+    text-align: center;
+}
+
+.btn-add:hover {
+    background: #ff4757;
+}
+
+/* Galeria */
+.gallery-section {
+    padding: 20px 20px 50px;
+    max-width: '';
+>>>>>>> 83f652c5551b0bdbeea99149c870ebf5a4923b45
 }
