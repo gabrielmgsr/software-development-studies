@@ -134,3 +134,64 @@ body {
     gap: 20px;
 }
 
+.photo-card {
+    background-color: #1a1a1e;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    border: 1px solid #323238;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.photo-card img{
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    display: block;
+}
+
+.photo-info{
+    padding: 15px;
+}
+
+.photo-date {
+    font-size: 08rem;
+    color: #ff6b81;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.photo-caption {
+    font-size: 0.95rem;
+    color: #c4c4cc;
+    margin-bottom: 12px;
+}
+
+.btn-download {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    background: #25252b;
+    color: #ff6b81;
+    text-align: center;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-top: 1px solid #323238;
+    transition: background 0.3s, color 0.3s;
+}
+
+.btn-download:hover {
+    background: #ff6b81;
+    color: #fff;
+}
+
+footer {
+    padding: 25px;
+    background: #09090a;
+    color: #82828c;
+    font-size: 0.9rem;
+}
