@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
-    <title>coisas
-        
-    </title>
+    <title>Amanda &amp; Marcos</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
 </head>
 <body>
+
+    <button type="button" id="btn-top-upload" class="top-upload-btn">Upload</button>
 
     <header class="hero">
         <div class="nomes-container">
@@ -54,9 +54,12 @@
         </div>
     </section>
 
-    <!-- Painel de envio -->
-    <section class="admin-section">
-        <h2>Adicionar Novo Momento</h2>
+    <!-- Painel de envio (exibido após autenticar com a senha) -->
+    <section id="admin-section" class="admin-section" style="display: none;">
+        <div class="admin-header">
+            <h2>Adicionar Novo Momento</h2>
+            <button type="button" id="btn-lock-upload" class="btn-lock">Ocultar</button>
+        </div>
         <form id="photo-form">
             <div class="input-group">
                 <label for="photo-file">Escolher Foto:</label>
@@ -86,9 +89,72 @@
         <p>Feito com todo meu amor para você ❤️</p>
     </footer>
 
+    <!-- Modal de Senha para Upload -->
+    <div id="password-modal" class="modal" aria-hidden="true">
+        <div class="modal-backdrop" id="password-backdrop"></div>
+        <div class="modal-content password-box">
+            <button type="button" id="password-close" class="modal-close" aria-label="Fechar">✕</button>
+            <h3>Área Restrita</h3>
+            <p class="subtitle" style="margin-bottom: 16px;">Digite a senha para liberar o envio de fotos.</p>
+            <form id="password-form">
+                <div class="input-group" style="margin-bottom: 14px;">
+                    <label for="upload-password">Senha:</label>
+                    <input type="password" id="upload-password" placeholder="Digite sua senha" required>
+                </div>
+                <p id="password-error" class="password-error"></p>
+                <button type="submit" class="btn-add" style="width: 100%;">Liberar Upload</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Visualização da Foto -->
+    <div id="photo-modal" class="modal" aria-hidden="true">
+        <div class="modal-backdrop" id="modal-backdrop"></div>
+        <div class="modal-content">
+            <button type="button" id="modal-close" class="modal-close" aria-label="Fechar">✕</button>
+            <img id="modal-img" src="" alt="Foto ampliada">
+            <div class="modal-details">
+                <div id="modal-date" class="photo-date"></div>
+                <p id="modal-desc" class="photo-caption"></p>
+                <div class="card-actions">
+                    <a id="modal-download" href="#" download="momento.jpg" class="btn-download">Baixar Foto 📥</a>
+                    <button type="button" id="modal-delete" class="btn-delete">Excluir Foto 🗑️</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Confirmação de Exclusão -->
+    <div id="confirm-delete-modal" class="modal" aria-hidden="true">
+        <div class="modal-backdrop" id="confirm-delete-backdrop"></div>
+        <div class="modal-content password-box">
+            <button type="button" id="confirm-delete-close" class="modal-close" aria-label="Fechar">✕</button>
+            <h3>Excluir Momento</h3>
+            <p id="confirm-delete-text" class="subtitle" style="margin-bottom: 18px;">
+                Tem certeza que deseja apagar esta foto?
+            </p>
+            <div class="confirm-actions">
+                <button type="button" id="confirm-delete-cancel" class="btn-lock">Cancelar</button>
+                <button type="button" id="confirm-delete-yes" class="btn-delete">Sim, excluir 🗑️</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Banner Animado de Feedback (Adicionar / Apagar) -->
+    <div id="feedback-toast" class="feedback-toast" aria-live="polite">
+        <div class="feedback-hearts" id="feedback-hearts"></div>
+        <div class="feedback-card">
+            <span id="feedback-icon" class="feedback-icon">❤️</span>
+            <div>
+                <strong id="feedback-title">Pronto!</strong>
+                <p id="feedback-message"></p>
+            </div>
+        </div>
+    </div>
+
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
