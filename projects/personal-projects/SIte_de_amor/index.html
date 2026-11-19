@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amanda & Marcos</title>
+    <meta name="robots" content="noindex, nofollow">
+    <title>coisas
+        
+    </title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
 </head>
@@ -11,54 +14,50 @@
 
     <header class="hero">
         <div class="nomes-container">
-            <span class="nome">Amanda</span>
-            <span class="coracao">❤️</span>
-            <span class="nome">Marcos Gabriel</span>
-            <span class="subtitle">Cada segundo ao seu lado é especial</span>
+            <div class="nomes-linha">
+                <span class="nome">Amanda</span>
+                <span class="coracao">❤️</span>
+                <span class="nome">Marcos Gabriel</span>
+            </div>
+            <p class="subtitle">Cada segundo ao seu lado é especial</p>
         </div>
     </header>
 
     <!-- Seção do Contador -->
-     <section class="counter-section">
+    <section class="counter-section">
         <h2>Estamos juntos há:</h2>
         <div id="counter" class="counter-grid">
-            <!-- anos -->
             <div class="time-box">
                 <span id="years">0</span>
                 <p>Anos</p>
             </div>
-            <!-- meses -->
-             <div class="time-box">
+            <div class="time-box">
                 <span id="months">0</span>
                 <p>Meses</p>
-             </div>
-             <!-- Dias -->
-              <div class="time-box">
+            </div>
+            <div class="time-box">
                 <span id="days">0</span>
                 <p>Dias</p>
-              </div>
-              <!-- Horas -->
-               <div class="time-box">
+            </div>
+            <div class="time-box">
                 <span id="hours">0</span>
                 <p>Horas</p>
-               </div>
-               <!-- minutos -->
-                <div class="time-box">
-                    <span id="minutes">0</span>
-                    <p>Minutos</p>
-                </div>
-                <!-- Segundos -->
-                <div class="time-box">
-                    <span id="seconds">0</span>
-                    <p>Segundos</p>
-                </div>
+            </div>
+            <div class="time-box">
+                <span id="minutes">0</span>
+                <p>Minutos</p>
+            </div>
+            <div class="time-box">
+                <span id="seconds">0</span>
+                <p>Segundos</p>
+            </div>
         </div>
-     </section>
+    </section>
 
-     <!-- Painel de envio -->
-      <section class="admin-section">
+    <!-- Painel de envio -->
+    <section class="admin-section">
         <h2>Adicionar Novo Momento</h2>
-        <form action="" id="photo-form">
+        <form id="photo-form">
             <div class="input-group">
                 <label for="photo-file">Escolher Foto:</label>
                 <input type="file" id="photo-file" accept="image/*" required>
@@ -73,24 +72,23 @@
             </div>
             <button type="submit" class="btn-add">Enviar para o Site</button>
         </form>
-      </section>
+    </section>
 
-     <!-- Seção da Galeria de fotos -->
-     <section class="gallery-section">
+    <!-- Seção da Galeria de fotos -->
+    <section class="gallery-section">
+        <h2>Nossos Momentos</h2>
         <div id="gallery-grid" class="gallery-grid">
-            <!-- Carregando fotos... -->
+            <p style="grid-column: 1/-1; color: #82828c;">Carregando fotos...</p>
         </div>
-     </section>
+    </section>
 
-     <footer>
+    <footer>
         <p>Feito com todo meu amor para você ❤️</p>
-     </footer>
+    </footer>
 
-     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
-    
-
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
